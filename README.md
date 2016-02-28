@@ -45,7 +45,7 @@ Right now there is no support for Cocoapods or Carthage (support will be added a
 
 To start using the framework first set up the Unsplash client in your application's AppDelegate file.
 
-```
+```swift
 import UIKit
 import UnsplashSwift
 
@@ -70,7 +70,7 @@ __Make sure to replace ```APP_ID``` and ```SECRET``` with the application ID and
 #### Latest Page
 
 To retrieve the latest page of curated batches, use ```latestPage()``` from the shared Unsplash client.
-```
+```swift
 let client = Unsplash.client!
 client.curatedBatches.latestPage().response({ response, error in
     if let page = response {
@@ -84,7 +84,7 @@ client.curatedBatches.latestPage().response({ response, error in
 #### Specific Batch
 
 To retrieve a specific curated batch, use ```findBatch(batchId:)``` from the shared Unsplash client.
-```
+```swift
 let client = Unsplash.client!
 client.curatedBatches.findBatch(1).response({ response, error in
     if let batch = response {
