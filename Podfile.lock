@@ -1,0 +1,18 @@
+PODS:
+  - Alamofire (3.2.0)
+  - UnsplashSwift (1.0.0):
+    - Alamofire (= 3.2.0)
+
+DEPENDENCIES:
+  - Alamofire (= 3.2.0)
+  - UnsplashSwift (from `.`)
+
+EXTERNAL SOURCES:
+  UnsplashSwift:
+    :path: "."
+
+SPEC CHECKSUMS:
+  Alamofire: 4da478599fccddff361205c8929333d7fe18dceb
+  UnsplashSwift: f8b7ea80301f1f3e5ddf1786cdc798e6ba28bde5
+
+COCOAPODS: 0.39.0
