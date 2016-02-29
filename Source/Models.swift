@@ -121,3 +121,11 @@ public class Category {
         self.photoCount = photoCount
     }
 }
+public class Stats {
+    public let photoDownloads : UInt32
+    public let batchDownloads : UInt32
+    public init(photoDownloads: UInt32, batchDownloads: UInt32) {
+        self.photoDownloads = photoDownloads
+        self.batchDownloads = batchDownloads
+    }
+}

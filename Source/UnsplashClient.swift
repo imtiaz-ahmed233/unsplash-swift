@@ -30,6 +30,7 @@ public class UnsplashClient {
     let appId : String
     public var curatedBatches : CuratedBatchesRoutes!
     public var categories : CategoriesRoutes!
+    public var stats : StatsRoutes!
     
     public static var sharedClient : UnsplashClient!
     
@@ -39,6 +40,7 @@ public class UnsplashClient {
         self.manager = manager
         self.curatedBatches = CuratedBatchesRoutes(client: self)
         self.categories = CategoriesRoutes(client: self)
+        self.stats = StatsRoutes(client: self)
     }
     
     public convenience init(appId: String) {

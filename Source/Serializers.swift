@@ -299,3 +299,18 @@ extension Category {
         }
     }
 }
+extension Stats {
+    public class Serializer : JSONSerializer {
+        public init() {}
+        public func deserialize(json: JSON) -> Stats {
+            switch json {
+            case .Dictionary(let dict):
+                let photoDownloads = UInt32Serializer().deserialize(dict["photo_downloads"] ?? .Null)
+                let batchDownloads = UInt32Serializer().deserialize(dict["batch_downloads"] ?? .Null)
+                return Stats(photoDownloads: photoDownloads, batchDownloads: batchDownloads)
+            default:
+                fatalError("error deserializing")
+            }
+        }
+    }
+}
