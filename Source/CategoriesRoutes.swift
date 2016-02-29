@@ -1,4 +1,4 @@
-// CategoriesSwift.routes
+// CategoriesRoutes.swift
 //
 // Copyright (c) 2016 Camden Fullmer (http://camdenfullmer.com/)
 //
