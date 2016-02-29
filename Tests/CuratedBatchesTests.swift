@@ -36,13 +36,13 @@ class CuratedBatchesTests: BaseTestCase {
         Unsplash.unlinkClient()
     }
     
-    func testLatestCuratedPage() {
+    func testFindBatches() {
         let expectation = expectationWithDescription("\(__FUNCTION__)")
         
-        client.curatedBatches.latestPage().response({ response, error in
+        client.curatedBatches.findBatches(1, perPage: nil).response({ response, error in
             XCTAssertNil(error)
-            if let page = response {
-                XCTAssertEqual(page.batches.count, 10)
+            if let result = response {
+                XCTAssertEqual(result.batches.count, 10)
             }
             
             expectation.fulfill()
@@ -51,29 +51,14 @@ class CuratedBatchesTests: BaseTestCase {
         waitForExpectations()
     }
     
-    func testPerPage() {
+    func testFindBatchesPerPage() {
         let expectation = expectationWithDescription("\(__FUNCTION__)")
         let perPage : UInt32 = 20
         
-        client.curatedBatches.findPage(nil, perPage: perPage).response({ response, error in
+        client.curatedBatches.findBatches(perPage: perPage).response({ response, error in
             XCTAssertNil(error)
-            if let page = response {
-                XCTAssertEqual(UInt32(page.batches.count), perPage)
-            }
-            
-            expectation.fulfill()
-        })
-        
-        waitForExpectations()
-    }
-    
-    func testSpecificPage() {
-        let expectation = expectationWithDescription("\(__FUNCTION__)")
-        
-        client.curatedBatches.findPage(1, perPage: nil).response({ response, error in
-            XCTAssertNil(error)
-            if let page = response {
-                XCTAssertEqual(page.batches.count, 10)
+            if let result = response {
+                XCTAssertEqual(UInt32(result.batches.count), perPage)
             }
             
             expectation.fulfill()

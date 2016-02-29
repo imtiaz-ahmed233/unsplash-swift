@@ -31,11 +31,7 @@ public class CuratedBatchesRoutes {
         self.client = client
     }
     
-    public func latestPage() -> UnsplashRequest<CuratedBatchesPage.Serializer> {
-        return UnsplashRequest(client: self.client, route: "/curated_batches", auth: false, params: nil, responseSerializer: CuratedBatchesPage.Serializer())
-    }
-    
-    public func findPage(page: UInt32?, perPage: UInt32?) -> UnsplashRequest<CuratedBatchesPage.Serializer> {
+    public func findBatches(page: UInt32?=nil, perPage: UInt32?=nil) -> UnsplashRequest<CuratedBatchesResult.Serializer> {
         var params = [String : AnyObject]()
         if let page = page {
             params["page"] = NSNumber(unsignedInt: page)
@@ -43,7 +39,7 @@ public class CuratedBatchesRoutes {
         if let perPage = perPage {
             params["per_page"] = NSNumber(unsignedInt: perPage)
         }
-        return UnsplashRequest(client: self.client, route: "/curated_batches", auth: false, params: params, responseSerializer: CuratedBatchesPage.Serializer())
+        return UnsplashRequest(client: self.client, route: "/curated_batches", auth: false, params: params, responseSerializer: CuratedBatchesResult.Serializer())
     }
     
     public func findBatch(batchId: UInt32) -> UnsplashRequest<CuratedBatch.Serializer> {

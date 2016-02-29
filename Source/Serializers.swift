@@ -222,14 +222,14 @@ extension User {
         }
     }
 }
-extension CuratedBatchesPage {
+extension CuratedBatchesResult {
     public class Serializer : JSONSerializer {
         public init() {}
-        public func deserialize(json: JSON) -> CuratedBatchesPage {
+        public func deserialize(json: JSON) -> CuratedBatchesResult {
             switch json {
             case .Array:
                 let batches = ArraySerializer(CuratedBatch.Serializer()).deserialize(json)
-                return CuratedBatchesPage(batches: batches)
+                return CuratedBatchesResult(batches: batches)
             default:
                 fatalError("error deserializing")
             }

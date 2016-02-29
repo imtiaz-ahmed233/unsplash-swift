@@ -46,7 +46,7 @@ public class Curator {
         self.bio = bio
     }
 }
-public class CuratedBatchesPage {
+public class CuratedBatchesResult {
     public let batches : Array<CuratedBatch>
     
     public init(batches: Array<CuratedBatch>) {

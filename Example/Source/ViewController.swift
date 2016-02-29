@@ -30,9 +30,9 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         let client = Unsplash.client!
-        client.curatedBatches.latestPage().response({ response, error in
-            if let page = response {
-                print(page)
+        client.curatedBatches.findBatches().response({ response, error in
+            if let result = response {
+                print(result.batches)
             } else {
                 print(error)
             }

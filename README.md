@@ -157,14 +157,14 @@ The ```categories``` property, of the UnsplashClient, contains other methods as 
 
 ### Curated Batches
 
-#### Latest Page
+#### Retrieve Batches
 
-To retrieve the latest page of curated batches, use ```latestPage()``` from the shared Unsplash client.
+To retrieve curated batches, use ```findBatches(page:perPage:)``` from the shared Unsplash client.
 ```swift
 let client = Unsplash.client!
-client.curatedBatches.latestPage().response({ response, error in
-    if let page = response {
-        print(page.batches)
+client.curatedBatches.findBatches().response({ response, error in
+    if let result = response {
+        print(result.batches)
     } else {
       // Handle error.
     }
