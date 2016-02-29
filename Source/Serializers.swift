@@ -212,13 +212,40 @@ extension User {
         public func deserialize(json: JSON) -> User {
             switch json {
             case .Dictionary(let dict):
-                let id = StringSerializer().deserialize(dict["id"] ?? .Null)
+                let id = StringSerializer().deserialize(dict["id"])
                 let username = StringSerializer().deserialize(dict["username"] ?? .Null)
-                let name = StringSerializer().deserialize(dict["name"] ?? .Null)
-                return User(id: id, username: username, name: name)
+                let name = StringSerializer().deserialize(dict["name"])
+                let firstName = StringSerializer().deserialize(dict["first_name"])
+                let lastName = StringSerializer().deserialize(dict["last_name"])
+                let downloads = UInt32Serializer().deserialize(dict["downloads"])
+                let profilePhoto = ProfilePhotoURL.Serializer().deserialize(dict["profile_image"])
+                let portfolioURL = NSURLSerializer().deserialize(dict["portfolio_url"])
+                return User(id: id, username: username, name: name, firstName: firstName, lastName: lastName, downloads: downloads, profilePhoto: profilePhoto, portfolioURL: portfolioURL)
             default:
                 fatalError("error deserializing")
             }
+        }
+    }
+}
+extension ProfilePhotoURL {
+    public class Serializer : OptionalJSONSerializer {
+        public init() {}
+        public func deserialize(json: JSON?) -> ProfilePhotoURL? {
+            if let j = json {
+                switch j {
+                case .Dictionary(let dict):
+                    let large = NSURLSerializer().deserialize(dict["large"] ?? .Null)
+                    let medium = NSURLSerializer().deserialize(dict["medium"] ?? .Null)
+                    let small = NSURLSerializer().deserialize(dict["small"] ?? .Null)
+                    let custom = NSURLSerializer().deserialize(dict["custom"])
+                    return ProfilePhotoURL(large: large, medium: medium, small: small, custom: custom)
+                case .Null:
+                    break
+                default:
+                    fatalError("error deserializing")
+                }
+            }
+            return nil
         }
     }
 }

@@ -23,14 +23,37 @@
 import UIKit
 
 public class User {
-    public let id : String
+    public let id : String?
     public let username : String
-    public let name : String
+    public let name : String?
+    public let firstName : String?
+    public let lastName : String?
+    public let downloads : UInt32?
+    public let profilePhoto : ProfilePhotoURL?
+    public let portfolioURL : NSURL?
     
-    public init(id: String, username: String, name: String) {
+    public init(id: String?, username: String, name: String?, firstName: String?, lastName: String?, downloads: UInt32?, profilePhoto: ProfilePhotoURL?, portfolioURL: NSURL?) {
         self.id = id;
         self.username = username;
         self.name = name
+        self.firstName = firstName
+        self.lastName = lastName
+        self.downloads = downloads
+        self.profilePhoto = profilePhoto
+        self.portfolioURL = portfolioURL
+    }
+}
+public class ProfilePhotoURL {
+    public let large : NSURL
+    public let medium : NSURL
+    public let small : NSURL
+    public let custom : NSURL?
+    
+    public init(large: NSURL, medium: NSURL, small: NSURL, custom: NSURL?) {
+        self.large = large
+        self.medium = medium
+        self.small = small
+        self.custom = custom
     }
 }
 public class Curator {

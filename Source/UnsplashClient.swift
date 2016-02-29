@@ -32,6 +32,7 @@ public class UnsplashClient {
     public var categories : CategoriesRoutes!
     public var stats : StatsRoutes!
     public var photos : PhotosRoutes!
+    public var users : UsersRoutes!
     
     public static var sharedClient : UnsplashClient!
     
@@ -43,6 +44,7 @@ public class UnsplashClient {
         self.categories = CategoriesRoutes(client: self)
         self.stats = StatsRoutes(client: self)
         self.photos = PhotosRoutes(client: self)
+        self.users = UsersRoutes(client: self)
     }
     
     public convenience init(appId: String) {

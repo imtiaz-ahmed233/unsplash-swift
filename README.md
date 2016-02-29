@@ -14,7 +14,7 @@ UnsplashSwift uses [Alamofire](https://github.com/Alamofire/Alamofire) as the ba
 
 - [ ] User Authorization
 - [ ] User Profile
-- [ ] Users
+- [x] Users
 - [x] Photos (partial support)
 - [x] Categories
 - [x] Curated Batches
@@ -64,6 +64,50 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 ```
 
 __Make sure to replace ```APP_ID``` and ```SECRET``` with the application ID and secret you received when you created an application with the [Unsplash API](https://unsplash.com/developers).__
+
+### Users
+
+#### Retrieve User
+
+To retrieve a user, use ```findUser(username:)``` from the shared Unsplash client.
+```swift
+let client = Unsplash.client!
+client.users.findUser("USERNAME").response({ response, error in
+    if let user = response {
+        print(user.username)
+    } else {
+      // Handle error.
+    }
+})
+```
+
+#### Retrieve User's Photos
+
+To retrieve the photos of a user, use ```photosForUser(username:)``` from the shared Unsplash client.
+```swift
+let client = Unsplash.client!
+client.users.photosForUser("USERNAME").response({ response, error in
+    if let result = response {
+        print(result.photos)
+    } else {
+      // Handle error.
+    }
+})
+```
+
+#### Retrieve User's Likes
+
+To retrieve the likes of a user, use ```likesForUser(username:page:perPage:)``` from the shared Unsplash client.
+```swift
+let client = Unsplash.client!
+client.users.likesForUser("USERNAME").response({ response, error in
+    if let result = response {
+        print(result.photos)
+    } else {
+      // Handle error.
+    }
+})
+```
 
 ### Photos
 
