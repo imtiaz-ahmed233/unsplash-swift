@@ -15,7 +15,7 @@ UnsplashSwift uses [Alamofire](https://github.com/Alamofire/Alamofire) as the ba
 - [ ] User Authorization
 - [ ] User Profile
 - [ ] Users
-- [ ] Photos
+- [x] Photos (partial support)
 - [x] Categories
 - [x] Curated Batches
 - [x] Stats
@@ -64,6 +64,64 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 ```
 
 __Make sure to replace ```APP_ID``` and ```SECRET``` with the application ID and secret you received when you created an application with the [Unsplash API](https://unsplash.com/developers).__
+
+### Photos
+
+#### Retrieve Photos
+
+To retrieve photos, use ```findPhotos(page:perPage:)``` from the Unsplash client.
+```swift
+let client = Unsplash.client!
+client.photos.findPhotos(2, perPage:nil).response({ response, error in
+    if let result = response {
+        print(result.photos)
+    } else {
+      // Handle error.
+    }
+})
+```
+
+#### Search Photos
+
+To search for photos, use ```search(query:categoryIds:page:perPage:)``` from the shared Unsplash client.
+```swift
+let client = Unsplash.client!
+client.photos.search("cat").response({ response, error in
+    if let result = response {
+        print(result.photos)
+    } else {
+      // Handle error.
+    }
+})
+```
+
+#### Specific Photo
+
+To retrieve a specific photo, use ```findPhoto(photoId:width:height:rect:)``` from the shared Unsplash client.
+```swift
+let client = Unsplash.client!
+client.photos.findPhoto("PHOTO_ID").response({ response, error in
+    if let photo = response {
+        print(photo.id)
+    } else {
+      // Handle error.
+    }
+})
+```
+
+#### Random Photo
+
+To retrieve a random photo, use ```random(query:categoryIds:featured:username:width:height:)``` from the shared Unsplash client.
+```swift
+let client = Unsplash.client!
+client.photos.random().response({ response, error in
+    if let photo = response {
+        print(photo.id)
+    } else {
+      // Handle error.
+    }
+})
+```
 
 ### Categories
 

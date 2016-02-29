@@ -80,14 +80,24 @@ public class Photo {
     public let color : UIColor
     public let user : User
     public let url : PhotoURL
+    public let categories : Array<Category>
+    public let exif : Exif?
+    public let downloads : UInt32?
+    public let likes : UInt32?
+    public let location : Location?
     
-    public init(id: String, width: UInt32, height: UInt32, color: UIColor, user: User, url: PhotoURL) {
+    public init(id: String, width: UInt32, height: UInt32, color: UIColor, user: User, url: PhotoURL, categories: Array<Category>, exif: Exif?, downloads: UInt32?, likes: UInt32?, location: Location?) {
         self.id = id
         self.width = width;
         self.height = height;
         self.color = color
         self.user = user
         self.url = url
+        self.categories = categories
+        self.exif = exif
+        self.downloads = downloads
+        self.likes = likes
+        self.location = location
     }
 }
 public class PhotoURL {
@@ -95,12 +105,14 @@ public class PhotoURL {
     public let regular : NSURL
     public let small : NSURL
     public let thumb : NSURL
+    public let custom : NSURL?
     
-    public init(full: NSURL, regular: NSURL, small: NSURL, thumb: NSURL) {
+    public init(full: NSURL, regular: NSURL, small: NSURL, thumb: NSURL, custom: NSURL?) {
         self.full = full
         self.regular = regular
         self.small = small
         self.thumb = thumb
+        self.custom = custom
     }
 }
 public class CategoriesResult {
@@ -127,5 +139,39 @@ public class Stats {
     public init(photoDownloads: UInt32, batchDownloads: UInt32) {
         self.photoDownloads = photoDownloads
         self.batchDownloads = batchDownloads
+    }
+}
+public class Exif {
+    public let make : String?
+    public let model : String?
+    public let exposureTime : Double?
+    public let aperture : Double?
+    public let focalLength : UInt32?
+    public let iso : UInt32?
+    public init(make: String?, model: String?, exposureTime: Double?, aperture: Double?, focalLength: UInt32?, iso: UInt32?) {
+        self.make = make
+        self.model = model
+        self.exposureTime = exposureTime
+        self.aperture = aperture
+        self.focalLength = focalLength
+        self.iso = iso
+    }
+}
+public class Location {
+    public let city: String
+    public let country: String
+    public let positon: Position
+    public init(city: String, country: String, position: Position) {
+        self.city = city
+        self.country = country
+        self.positon = position
+    }
+}
+public class Position {
+    public let latitude : Double
+    public let longitude : Double
+    public init(latitude: Double, longitude: Double) {
+        self.latitude = latitude
+        self.longitude = longitude
     }
 }
