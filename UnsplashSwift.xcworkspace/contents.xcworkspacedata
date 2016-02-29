@@ -10,7 +10,4 @@
    <FileRef
       location = "group:Example/iOS Example.xcodeproj">
    </FileRef>
-   <FileRef
-      location = "group:Unsplashswift.xcodeproj">
-   </FileRef>
 </Workspace>
