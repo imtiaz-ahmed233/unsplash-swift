@@ -202,20 +202,6 @@ extension CuratedBatch {
         }
     }
 }
-extension CuratedBatchPhotosResult {
-    public class Serializer : JSONSerializer {
-        public init() {}
-        public func deserialize(json: JSON) -> CuratedBatchPhotosResult {
-            switch json {
-            case .Array:
-                let photos = ArraySerializer(Photo.Serializer()).deserialize(json)
-                return CuratedBatchPhotosResult(photos: photos)
-            default:
-                fatalError("error deserializing")
-            }
-        }
-    }
-}
 extension Curator {
     public class Serializer : JSONSerializer {
         public init() {}
@@ -252,6 +238,20 @@ extension Photo {
         }
     }
 }
+extension PhotosResult {
+    public class Serializer : JSONSerializer {
+        public init() {}
+        public func deserialize(json: JSON) -> PhotosResult {
+            switch json {
+            case .Array:
+                let photos = ArraySerializer(Photo.Serializer()).deserialize(json)
+                return PhotosResult(photos: photos)
+            default:
+                fatalError("error deserializing")
+            }
+        }
+    }
+}
 extension PhotoURL {
     public class Serializer : JSONSerializer {
         public init() {}
@@ -263,6 +263,36 @@ extension PhotoURL {
                 let small = NSURLSerializer().deserialize(dict["small"] ?? .Null)
                 let thumb = NSURLSerializer().deserialize(dict["thumb"] ?? .Null)
                 return PhotoURL(full: full, regular: regular, small: small, thumb: thumb)
+            default:
+                fatalError("error deserializing")
+            }
+        }
+    }
+}
+extension CategoriesResult {
+    public class Serializer : JSONSerializer {
+        public init() {}
+        public func deserialize(json: JSON) -> CategoriesResult {
+            switch json {
+            case .Array:
+                let categories = ArraySerializer(Category.Serializer()).deserialize(json)
+                return CategoriesResult(categories: categories)
+            default:
+                fatalError("error deserializing")
+            }
+        }
+    }
+}
+extension Category {
+    public class Serializer : JSONSerializer {
+        public init() {}
+        public func deserialize(json: JSON) -> Category {
+            switch json {
+            case .Dictionary(let dict):
+                let id = UInt32Serializer().deserialize(dict["id"] ?? .Null)
+                let title = StringSerializer().deserialize(dict["title"] ?? .Null)
+                let photoCount = UInt32Serializer().deserialize(dict["photo_count"] ?? .Null)
+                return Category(id: id, title: title, photoCount: photoCount)
             default:
                 fatalError("error deserializing")
             }

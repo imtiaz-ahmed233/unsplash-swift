@@ -16,7 +16,7 @@ UnsplashSwift uses [Alamofire](https://github.com/Alamofire/Alamofire) as the ba
 - [ ] User Profile
 - [ ] Users
 - [ ] Photos
-- [ ] Categories
+- [x] Categories
 - [x] Curated Batches
 - [ ] Stats
 
@@ -96,6 +96,38 @@ client.curatedBatches.findBatch(1).response({ response, error in
 ```
 
 The ```curatedBatches``` property, of the UnsplashClient, contains other methods as well (_CuratedBatchesRoutes.swift_).
+
+### Categories
+
+#### All Categories
+
+To retrieve all the categories, use ```all()``` from the Unsplash client.
+```swift
+let client = Unsplash.client!
+client.categories.all().response({ response, error in
+    if let result = response {
+        print(result.categories)
+    } else {
+      // Handle error.
+    }
+})
+```
+
+#### Specific Category
+
+To retrieve a specific curated batch, use ```findCategory(categoryId:)``` from the shared Unsplash client.
+```swift
+let client = Unsplash.client!
+client.categories.findCategory(2).response({ response, error in
+    if let category = response {
+        print(category.title)
+    } else {
+      // Handle error.
+    }
+})
+```
+
+The ```categories``` property, of the UnsplashClient, contains other methods as well (_CategoriesRoutes.swift_).
 
 ## Unit Tests
 

@@ -66,7 +66,7 @@ public class CuratedBatch {
         self.curator = curator
     }
 }
-public class CuratedBatchPhotosResult {
+public class PhotosResult {
     public let photos : Array<Photo>
     
     public init(photos: Array<Photo>) {
@@ -101,5 +101,23 @@ public class PhotoURL {
         self.regular = regular
         self.small = small
         self.thumb = thumb
+    }
+}
+public class CategoriesResult {
+    public let categories : Array<Category>
+    
+    public init(categories: Array<Category>) {
+        self.categories = categories
+    }
+}
+public class Category {
+    public let id : UInt32
+    public let title : String
+    public let photoCount : UInt32
+    
+    public init(id: UInt32, title: String, photoCount: UInt32) {
+        self.id = id
+        self.title = title
+        self.photoCount = photoCount
     }
 }

@@ -1,4 +1,4 @@
-// CuratedBatchesRoutes.swift
+// CategoriesSwift.routes
 //
 // Copyright (c) 2016 Camden Fullmer (http://camdenfullmer.com/)
 //
@@ -23,7 +23,7 @@
 import Foundation
 import Alamofire
 
-public class CuratedBatchesRoutes {
+public class CategoriesRoutes {
     
     let client : UnsplashClient
     
@@ -31,28 +31,23 @@ public class CuratedBatchesRoutes {
         self.client = client
     }
     
-    public func latestPage() -> UnsplashRequest<CuratedBatchesPage.Serializer> {
-        return UnsplashRequest(client: self.client, route: "/curated_batches", auth: false, params: nil, responseSerializer: CuratedBatchesPage.Serializer())
+    public func all() -> UnsplashRequest<CategoriesResult.Serializer> {
+        return UnsplashRequest(client: self.client, route: "/categories", auth: false, params: nil, responseSerializer: CategoriesResult.Serializer())
     }
     
-    public func findPage(page: UInt32?, perPage: UInt32?) -> UnsplashRequest<CuratedBatchesPage.Serializer> {
-        var params = [String : AnyObject]()
+    public func findCategory(categoryId: UInt32) -> UnsplashRequest<Category.Serializer> {
+        let params = ["id" : NSNumber(unsignedInt: categoryId)]
+        return UnsplashRequest(client: self.client, route: "/categories/\(categoryId)", auth: false, params: params, responseSerializer: Category.Serializer())
+    }
+    
+    public func photosForCategory(categoryId: UInt32, page: UInt32?, perPage: UInt32?) -> UnsplashRequest<PhotosResult.Serializer> {
+        var params = ["id" : NSNumber(unsignedInt: categoryId)]
         if let page = page {
             params["page"] = NSNumber(unsignedInt: page)
         }
         if let perPage = perPage {
             params["per_page"] = NSNumber(unsignedInt: perPage)
         }
-        return UnsplashRequest(client: self.client, route: "/curated_batches", auth: false, params: params, responseSerializer: CuratedBatchesPage.Serializer())
-    }
-    
-    public func findBatch(batchId: UInt32) -> UnsplashRequest<CuratedBatch.Serializer> {
-        let params = ["id" : NSNumber(unsignedInt: batchId)]
-        return UnsplashRequest(client: self.client, route: "/curated_batches/\(batchId)", auth: false, params: params, responseSerializer: CuratedBatch.Serializer())
-    }
-    
-    public func photosForBatch(batchId: UInt32) -> UnsplashRequest<PhotosResult.Serializer> {
-        let params = ["id" : NSNumber(unsignedInt: batchId)]
-        return UnsplashRequest(client: self.client, route: "/curated_batches/\(batchId)/photos", auth: false, params: params, responseSerializer: PhotosResult.Serializer())
+        return UnsplashRequest(client: self.client, route: "/curated_batches/\(categoryId)/photos", auth: false, params: params, responseSerializer: PhotosResult.Serializer())
     }
 }

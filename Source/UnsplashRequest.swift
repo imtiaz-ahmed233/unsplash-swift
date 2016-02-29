@@ -27,15 +27,18 @@ public class UnsplashRequest<RType : JSONSerializer> {
     let responseSerializer : RType
     let request : Alamofire.Request
     
-    init(client: UnsplashClient, route: String, params: [String : AnyObject]?, responseSerializer: RType) {
+    init(client: UnsplashClient, route: String, auth: Bool, params: [String : AnyObject]?, responseSerializer: RType) {
         self.responseSerializer = responseSerializer
         
-        let noAuth = route.containsString("curated_batches") // TODO: Break this out later to check multiple routes.
         let url = "\(client.host)\(route)"
-        let headers = client.additionalHeaders(noAuth)
+        let headers = client.additionalHeaders(auth)
         
         self.request = client.manager.request(.GET, url, parameters: params, encoding: ParameterEncoding.URL, headers: headers)
         request.resume()
+    }
+    
+    static func authNeededForRoute(route: String) -> Bool {
+        return route.containsString("curated_batches")
     }
     
     public func response(completionHandler: (RType.ValueType?, CallError?) -> Void) -> Self {

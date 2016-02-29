@@ -29,6 +29,7 @@ public class UnsplashClient {
     let manager : Manager
     let appId : String
     public var curatedBatches : CuratedBatchesRoutes!
+    public var categories : CategoriesRoutes!
     
     public static var sharedClient : UnsplashClient!
     
@@ -37,6 +38,7 @@ public class UnsplashClient {
         self.host = host
         self.manager = manager
         self.curatedBatches = CuratedBatchesRoutes(client: self)
+        self.categories = CategoriesRoutes(client: self)
     }
     
     public convenience init(appId: String) {
@@ -45,15 +47,15 @@ public class UnsplashClient {
         self.init(appId: appId, manager: manager, host: "https://api.unsplash.com")
     }
     
-    public func additionalHeaders(noAuth: Bool) -> [String : String] {
+    public func additionalHeaders(authNeeded: Bool) -> [String : String] {
         var headers = [
             "Accept-Version" : "v1",
             "Content-Type" : "application/json",
         ]
-        if (noAuth) {
-            headers["Authorization"] = "Client-ID \(self.appId)"
-        } else {
+        if (authNeeded) {
             // TODO: Access token will get set here.
+        } else {
+            headers["Authorization"] = "Client-ID \(self.appId)"
         }
         return headers
     }
