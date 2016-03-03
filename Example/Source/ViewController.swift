@@ -24,26 +24,25 @@ import UIKit
 import UnsplashSwift
 
 class ViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        let client = Unsplash.client!
-        client.curatedBatches.findBatches().response({ response, error in
-            if let result = response {
-                print(result.batches)
-            } else {
-                print(error)
-            }
-        })
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    
+    @IBAction func linkButtonTapped(sender: AnyObject) {
+        Unsplash.authorizeFromController(self, completion: { success, error in
+            if success {
+                print("linked to Unsplash!")
+            } else {
+                print(error!.localizedDescription)
+            }
+        })
+    }
 }
 

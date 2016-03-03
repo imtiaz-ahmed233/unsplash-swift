@@ -12,7 +12,7 @@ UnsplashSwift uses [Alamofire](https://github.com/Alamofire/Alamofire) as the ba
 
 ## Features
 
-- [ ] User Authorization
+- [x] User Authorization
 - [ ] User Profile
 - [x] Users
 - [x] Photos (partial support)
@@ -63,7 +63,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 ```
 
-__Make sure to replace ```APP_ID``` and ```SECRET``` with the application ID and secret you received when you created an application with the [Unsplash API](https://unsplash.com/developers).__
+__Note:__ Make sure to replace ```APP_ID``` and ```SECRET``` with the application ID and secret you received when you created an application with the [Unsplash API](https://unsplash.com/developers).
+
+### User Authentication
+
+#### Authorize user
+
+To authorize a user, use ```authorizeFromController(controller:completion:)``` from the shared Unsplash client.
+
+```swift
+Unsplash.authorizeFromController(self, completion: { success, error in
+    if success {
+        print("linked to Unsplash!")
+    } else {
+        print(error!.localizedDescription)
+    }
+})
+```
+
+__Note:__ Authorizing a user is not always required to interact with the Unsplash API. For example, you can retrieve curated batches without having a user log in.
 
 ### Users
 

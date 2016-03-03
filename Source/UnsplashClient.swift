@@ -33,6 +33,7 @@ public class UnsplashClient {
     public var stats : StatsRoutes!
     public var photos : PhotosRoutes!
     public var users : UsersRoutes!
+    public var accessToken : UnsplashAccessToken?
     
     public static var sharedClient : UnsplashClient!
     
@@ -64,6 +65,10 @@ public class UnsplashClient {
             headers["Authorization"] = "Client-ID \(self.appId)"
         }
         return headers
+    }
+    
+    public var authorized : Bool {
+        return self.accessToken != nil
     }
     
 }

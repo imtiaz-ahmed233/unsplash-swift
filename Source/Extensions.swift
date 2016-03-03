@@ -45,3 +45,16 @@ extension UIColor {
         return UIColor(red: red, green: green, blue: blue, alpha: 1)
     }
 }
+
+extension NSURL {
+    var queryPairs : [String : String] {
+        var results = [String: String]()
+        let pairs  = self.query?.componentsSeparatedByString("&") ?? []
+        
+        for pair in pairs {
+            let kv = pair.componentsSeparatedByString("=")
+            results.updateValue(kv[1], forKey: kv[0])
+        }
+        return results
+    }
+}

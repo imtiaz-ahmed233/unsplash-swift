@@ -29,8 +29,13 @@ public class Unsplash {
     public static func setUpWithAppId(appId : String, secret : String) {
         precondition(UnsplashClient.sharedClient == nil, "only call `UnsplashClient.init` one time")
         
+        UnsplashAuthManager.sharedAuthManager = UnsplashAuthManager(appId: appId, secret: secret)
         UnsplashClient.sharedClient = UnsplashClient(appId: appId)
         Unsplash.client = UnsplashClient.sharedClient
+        
+        if let token = UnsplashAuthManager.sharedAuthManager.getAccessToken() {
+            UnsplashClient.sharedClient.accessToken = token
+        }
     }
     
     public static func unlinkClient() {
@@ -38,5 +43,21 @@ public class Unsplash {
         
         Unsplash.client = nil
         UnsplashClient.sharedClient = nil
-    }    
+        UnsplashAuthManager.sharedAuthManager.clearAccessToken()
+        UnsplashAuthManager.sharedAuthManager = nil
+    }
+    
+    public static func authorizeFromController(controller: UIViewController, completion:(Bool, NSError?) -> Void) {
+        precondition(UnsplashAuthManager.sharedAuthManager != nil, "call `UnsplashAuthManager.init` before calling this method")
+        precondition(!UnsplashClient.sharedClient.authorized, "client is already authorized")
+        
+        UnsplashAuthManager.sharedAuthManager.authorizeFromController(controller, completion: { token, error in
+            if let accessToken = token {
+                UnsplashClient.sharedClient.accessToken = accessToken
+                completion(true, nil)
+            } else  {
+                completion(false, error!)
+            }
+        })
+    }
 }
