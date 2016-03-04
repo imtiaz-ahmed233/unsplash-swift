@@ -40,7 +40,7 @@ public class CategoriesRoutes {
         return UnsplashRequest(client: self.client, route: "/categories/\(categoryId)", auth: false, params: params, responseSerializer: Category.Serializer())
     }
     
-    public func photosForCategory(categoryId: UInt32, page: UInt32?, perPage: UInt32?) -> UnsplashRequest<PhotosResult.Serializer> {
+    public func photosForCategory(categoryId: UInt32, page: UInt32?=nil, perPage: UInt32?=nil) -> UnsplashRequest<PhotosResult.Serializer> {
         var params = ["id" : NSNumber(unsignedInt: categoryId)]
         if let page = page {
             params["page"] = NSNumber(unsignedInt: page)

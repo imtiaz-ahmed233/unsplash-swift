@@ -28,11 +28,14 @@ class StatsTestCase: BaseTestCase {
     func testTotalDownloads() {
         let expectation = expectationWithDescription("\(__FUNCTION__)")
         
+        MockedURLProtocol.statusCode = 200
+        MockedURLProtocol.responseData = Utils.dataForJSONFile("stats_total_downloads")
+        
         client.stats.totalDownloads().response({ response, error in
             XCTAssertNil(error)
             if let stats = response {
-                XCTAssertGreaterThan(stats.photoDownloads, 0)
-                XCTAssertGreaterThan(stats.batchDownloads, 0)
+                XCTAssertEqual(stats.photoDownloads, 40775186)
+                XCTAssertEqual(stats.batchDownloads, 35208278)
             }
             
             expectation.fulfill()

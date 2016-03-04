@@ -29,26 +29,18 @@ class CuratedBatchesTests: BaseTestCase {
     func testFindBatches() {
         let expectation = expectationWithDescription("\(__FUNCTION__)")
         
+        MockedURLProtocol.statusCode = 200
+        MockedURLProtocol.responseData = Utils.dataForJSONFile("curated_batches_list")
+        
         client.curatedBatches.findBatches(1, perPage: nil).response({ response, error in
             XCTAssertNil(error)
             if let result = response {
-                XCTAssertEqual(result.batches.count, 10)
-            }
-            
-            expectation.fulfill()
-        })
-        
-        waitForExpectations()
-    }
-    
-    func testFindBatchesPerPage() {
-        let expectation = expectationWithDescription("\(__FUNCTION__)")
-        let perPage : UInt32 = 20
-        
-        client.curatedBatches.findBatches(perPage: perPage).response({ response, error in
-            XCTAssertNil(error)
-            if let result = response {
-                XCTAssertEqual(UInt32(result.batches.count), perPage)
+                XCTAssertEqual(result.batches.count, 1)
+                let batch = result.batches.first!
+                XCTAssertEqual(batch.id, 1)
+                XCTAssertEqual(batch.downloads, 576714)
+                XCTAssertNotNil(batch.curator)
+                XCTAssertNotNil(batch.publishedAt)
             }
             
             expectation.fulfill()
@@ -59,15 +51,16 @@ class CuratedBatchesTests: BaseTestCase {
     
     func testSpecificBatch() {
         let expectation = expectationWithDescription("\(__FUNCTION__)")
-        let batchId : UInt32 = 109
+
+        MockedURLProtocol.statusCode = 200
+        MockedURLProtocol.responseData = Utils.dataForJSONFile("curated_batches_specific")
         
-        client.curatedBatches.findBatch(batchId).response({ response, error in
+        client.curatedBatches.findBatch(1).response({ response, error in
             XCTAssertNil(error)
             if let batch = response {
-                XCTAssertEqual(batch.id, batchId)
-                XCTAssertEqual(batch.curator.name, "Dan Snow")
-                XCTAssertTrue(batch.publishedAt.isEqualToDate(NSDate(timeIntervalSince1970: 1455900777)))
-//                  XCTAssertGreaterThan(batch.downloads, 0)
+                XCTAssertEqual(batch.id, 1)
+                XCTAssertNotNil(batch.curator)
+                XCTAssertNotNil(batch.publishedAt)
             }
             
             expectation.fulfill()
@@ -78,26 +71,22 @@ class CuratedBatchesTests: BaseTestCase {
     
     func testCuratedBatchPhotos() {
         let expectation = expectationWithDescription("\(__FUNCTION__)")
-        let batchId : UInt32 = 109
+
+        MockedURLProtocol.statusCode = 200
+        MockedURLProtocol.responseData = Utils.dataForJSONFile("curated_batches_photos")
         
-        client.curatedBatches.photosForBatch(batchId).response({ response, error in
+        client.curatedBatches.photosForBatch(1).response({ response, error in
             XCTAssertNil(error)
             if let result = response {
-                XCTAssertEqual(result.photos.count, 10)
+                XCTAssertEqual(result.photos.count, 1)
+                let photo = result.photos.first!
+                XCTAssertEqual(photo.id, "jVb0mSn0LbE")
+                XCTAssertEqual(photo.width, 5245)
+                XCTAssertEqual(photo.height, 3497)
+                XCTAssertNotNil(photo.color)
+                XCTAssertNotNil(photo.user)
+                XCTAssertNotNil(photo.url)
             }
-            
-            expectation.fulfill()
-        })
-        
-        waitForExpectations()
-    }
-    
-    func testInvalidBatchIdForPhotos() {
-        let expectation = expectationWithDescription("\(__FUNCTION__)")
-        
-        client.curatedBatches.photosForBatch(UINT32_MAX).response({ response, error in
-            XCTAssertNotNil(error)
-            XCTAssertNil(response)
             
             expectation.fulfill()
         })

@@ -27,24 +27,4 @@ public class Config {
     
     static let accessToken = UnsplashAccessToken(appId: "APP_ID", accessToken: "ACCESS_TOKEN")
     
-    public static var appId: String {
-        let info = NSBundle(forClass: self).infoDictionary!
-        let appId = info["UNSPLASH_APP_ID"] as! String
-        if appId == "NOT_SET" {
-            fatalError("In order to run the tests 'UNSPLASH_APP_ID' must be set in the Test's Info.plist file.")
-        } else {
-            return appId
-        }
-    }
-    
-    public static var secret: String {
-        let info = NSBundle(forClass: self).infoDictionary!
-        let secret = info["UNSPLASH_SECRET"] as! String
-        if secret == "NOT_SET" {
-            fatalError("In order to run the tests 'UNSPLASH_APP_ID' must be set in the Test's Info.plist file.")
-        } else {
-            return secret
-        }
-    }
-    
 }

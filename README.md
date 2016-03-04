@@ -300,9 +300,7 @@ client.stats.totalDownloads().response({ response, error in
 
 ## Unit Tests
 
-UnsplashSwift includes a set of unit tests to run on the framework. In order to run all the tests you need to fill the ```UNSPLASH_APP_ID``` and ```UNSPLASH_SECRET``` keys in the Test target's  *Info.plist*. If you don't fill these in the tests throw a fatal error when running.
-
-__Note:__ If anyone has a better way of doing this so the file doesn't have to be modified everytime I'm open to suggestions.
+UnsplashSwift includes a set of unit tests to run on the framework. These unit tests use the NSURLProtocol to mock all the API responses so that an app Id and secret are not necessary to run the tests.
 
 ## Contributors
 

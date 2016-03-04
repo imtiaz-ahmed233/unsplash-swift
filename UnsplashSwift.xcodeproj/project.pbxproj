@@ -31,6 +31,20 @@
 		A8341F3A1C80DC4500110208 /* UnsplashClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8341F391C80DC4500110208 /* UnsplashClient.swift */; };
 		A8341F3B1C80DC6300110208 /* UnsplashUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FCB2C1C80CC7F003F09D2 /* UnsplashUtil.swift */; };
 		A893ACE71C89E0ED00DBEBC1 /* current_user_update.json in Resources */ = {isa = PBXBuildFile; fileRef = A893ACE61C89E0ED00DBEBC1 /* current_user_update.json */; };
+		A8A117221C89EDC500CA0852 /* categories_all.json in Resources */ = {isa = PBXBuildFile; fileRef = A8A117211C89EDC500CA0852 /* categories_all.json */; };
+		A8A117251C89EE8D00CA0852 /* categories_photos.json in Resources */ = {isa = PBXBuildFile; fileRef = A8A117231C89EE8D00CA0852 /* categories_photos.json */; };
+		A8A117261C89EE8D00CA0852 /* categories_specific.json in Resources */ = {isa = PBXBuildFile; fileRef = A8A117241C89EE8D00CA0852 /* categories_specific.json */; };
+		A8A1172A1C89F13700CA0852 /* curated_batches_list.json in Resources */ = {isa = PBXBuildFile; fileRef = A8A117271C89F13700CA0852 /* curated_batches_list.json */; };
+		A8A1172B1C89F13700CA0852 /* curated_batches_photos.json in Resources */ = {isa = PBXBuildFile; fileRef = A8A117281C89F13700CA0852 /* curated_batches_photos.json */; };
+		A8A1172C1C89F13700CA0852 /* curated_batches_specific.json in Resources */ = {isa = PBXBuildFile; fileRef = A8A117291C89F13700CA0852 /* curated_batches_specific.json */; };
+		A8A117311C89F39800CA0852 /* photos_list.json in Resources */ = {isa = PBXBuildFile; fileRef = A8A1172D1C89F39800CA0852 /* photos_list.json */; };
+		A8A117321C89F39800CA0852 /* photos_random.json in Resources */ = {isa = PBXBuildFile; fileRef = A8A1172E1C89F39800CA0852 /* photos_random.json */; };
+		A8A117331C89F39800CA0852 /* photos_search.json in Resources */ = {isa = PBXBuildFile; fileRef = A8A1172F1C89F39800CA0852 /* photos_search.json */; };
+		A8A117341C89F39800CA0852 /* photos_specific.json in Resources */ = {isa = PBXBuildFile; fileRef = A8A117301C89F39800CA0852 /* photos_specific.json */; };
+		A8A117361C89F76700CA0852 /* stats_total_downloads.json in Resources */ = {isa = PBXBuildFile; fileRef = A8A117351C89F76700CA0852 /* stats_total_downloads.json */; };
+		A8A1173A1C89F80200CA0852 /* users_liked_photos.json in Resources */ = {isa = PBXBuildFile; fileRef = A8A117371C89F80200CA0852 /* users_liked_photos.json */; };
+		A8A1173B1C89F80200CA0852 /* users_photos.json in Resources */ = {isa = PBXBuildFile; fileRef = A8A117381C89F80200CA0852 /* users_photos.json */; };
+		A8A1173C1C89F80200CA0852 /* users_profile.json in Resources */ = {isa = PBXBuildFile; fileRef = A8A117391C89F80200CA0852 /* users_profile.json */; };
 		A8B201581C85FBA9001FFB76 /* UnsplashAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B201571C85FBA9001FFB76 /* UnsplashAuthManager.swift */; };
 		A8BA68BD1C84D79200DA27A6 /* UsersRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BA68BC1C84D79200DA27A6 /* UsersRoutes.swift */; };
 		A8BA68BF1C84DAAB00DA27A6 /* UsersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BA68BE1C84DAAB00DA27A6 /* UsersTests.swift */; };
@@ -77,6 +91,20 @@
 		A82FCB2C1C80CC7F003F09D2 /* UnsplashUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UnsplashUtil.swift; path = Source/UnsplashUtil.swift; sourceTree = SOURCE_ROOT; };
 		A8341F391C80DC4500110208 /* UnsplashClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UnsplashClient.swift; path = Source/UnsplashClient.swift; sourceTree = SOURCE_ROOT; };
 		A893ACE61C89E0ED00DBEBC1 /* current_user_update.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = current_user_update.json; path = Tests/Responses/current_user_update.json; sourceTree = SOURCE_ROOT; };
+		A8A117211C89EDC500CA0852 /* categories_all.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = categories_all.json; path = Tests/Responses/categories_all.json; sourceTree = SOURCE_ROOT; };
+		A8A117231C89EE8D00CA0852 /* categories_photos.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = categories_photos.json; path = Tests/Responses/categories_photos.json; sourceTree = SOURCE_ROOT; };
+		A8A117241C89EE8D00CA0852 /* categories_specific.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = categories_specific.json; path = Tests/Responses/categories_specific.json; sourceTree = SOURCE_ROOT; };
+		A8A117271C89F13700CA0852 /* curated_batches_list.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = curated_batches_list.json; path = Tests/Responses/curated_batches_list.json; sourceTree = SOURCE_ROOT; };
+		A8A117281C89F13700CA0852 /* curated_batches_photos.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = curated_batches_photos.json; path = Tests/Responses/curated_batches_photos.json; sourceTree = SOURCE_ROOT; };
+		A8A117291C89F13700CA0852 /* curated_batches_specific.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = curated_batches_specific.json; path = Tests/Responses/curated_batches_specific.json; sourceTree = SOURCE_ROOT; };
+		A8A1172D1C89F39800CA0852 /* photos_list.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = photos_list.json; path = Tests/Responses/photos_list.json; sourceTree = SOURCE_ROOT; };
+		A8A1172E1C89F39800CA0852 /* photos_random.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = photos_random.json; path = Tests/Responses/photos_random.json; sourceTree = SOURCE_ROOT; };
+		A8A1172F1C89F39800CA0852 /* photos_search.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = photos_search.json; path = Tests/Responses/photos_search.json; sourceTree = SOURCE_ROOT; };
+		A8A117301C89F39800CA0852 /* photos_specific.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = photos_specific.json; path = Tests/Responses/photos_specific.json; sourceTree = SOURCE_ROOT; };
+		A8A117351C89F76700CA0852 /* stats_total_downloads.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = stats_total_downloads.json; path = Tests/Responses/stats_total_downloads.json; sourceTree = SOURCE_ROOT; };
+		A8A117371C89F80200CA0852 /* users_liked_photos.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = users_liked_photos.json; path = Tests/Responses/users_liked_photos.json; sourceTree = SOURCE_ROOT; };
+		A8A117381C89F80200CA0852 /* users_photos.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = users_photos.json; path = Tests/Responses/users_photos.json; sourceTree = SOURCE_ROOT; };
+		A8A117391C89F80200CA0852 /* users_profile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = users_profile.json; path = Tests/Responses/users_profile.json; sourceTree = SOURCE_ROOT; };
 		A8B201571C85FBA9001FFB76 /* UnsplashAuthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UnsplashAuthManager.swift; path = Source/UnsplashAuthManager.swift; sourceTree = SOURCE_ROOT; };
 		A8BA68BC1C84D79200DA27A6 /* UsersRoutes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UsersRoutes.swift; path = Source/UsersRoutes.swift; sourceTree = SOURCE_ROOT; };
 		A8BA68BE1C84DAAB00DA27A6 /* UsersTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UsersTests.swift; path = Tests/UsersTests.swift; sourceTree = SOURCE_ROOT; };
@@ -114,8 +142,22 @@
 		A806F4521C88E7E500535D60 /* Responses */ = {
 			isa = PBXGroup;
 			children = (
+				A8A117211C89EDC500CA0852 /* categories_all.json */,
+				A8A117231C89EE8D00CA0852 /* categories_photos.json */,
+				A8A117241C89EE8D00CA0852 /* categories_specific.json */,
+				A8A117271C89F13700CA0852 /* curated_batches_list.json */,
+				A8A117281C89F13700CA0852 /* curated_batches_photos.json */,
+				A8A117291C89F13700CA0852 /* curated_batches_specific.json */,
 				A806F4531C88E7F200535D60 /* current_user_profile.json */,
 				A893ACE61C89E0ED00DBEBC1 /* current_user_update.json */,
+				A8A1172D1C89F39800CA0852 /* photos_list.json */,
+				A8A1172E1C89F39800CA0852 /* photos_random.json */,
+				A8A1172F1C89F39800CA0852 /* photos_search.json */,
+				A8A117301C89F39800CA0852 /* photos_specific.json */,
+				A8A117351C89F76700CA0852 /* stats_total_downloads.json */,
+				A8A117371C89F80200CA0852 /* users_liked_photos.json */,
+				A8A117381C89F80200CA0852 /* users_photos.json */,
+				A8A117391C89F80200CA0852 /* users_profile.json */,
 			);
 			name = Responses;
 			sourceTree = "<group>";
@@ -308,7 +350,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8A117311C89F39800CA0852 /* photos_list.json in Resources */,
+				A8A1172B1C89F13700CA0852 /* curated_batches_photos.json in Resources */,
+				A8A117361C89F76700CA0852 /* stats_total_downloads.json in Resources */,
+				A8A117341C89F39800CA0852 /* photos_specific.json in Resources */,
+				A8A117221C89EDC500CA0852 /* categories_all.json in Resources */,
+				A8A1172A1C89F13700CA0852 /* curated_batches_list.json in Resources */,
+				A8A1173B1C89F80200CA0852 /* users_photos.json in Resources */,
+				A8A1172C1C89F13700CA0852 /* curated_batches_specific.json in Resources */,
+				A8A117321C89F39800CA0852 /* photos_random.json in Resources */,
 				A806F4541C88E7F200535D60 /* current_user_profile.json in Resources */,
+				A8A1173A1C89F80200CA0852 /* users_liked_photos.json in Resources */,
+				A8A117331C89F39800CA0852 /* photos_search.json in Resources */,
+				A8A1173C1C89F80200CA0852 /* users_profile.json in Resources */,
+				A8A117251C89EE8D00CA0852 /* categories_photos.json in Resources */,
+				A8A117261C89EE8D00CA0852 /* categories_specific.json in Resources */,
 				A893ACE71C89E0ED00DBEBC1 /* current_user_update.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

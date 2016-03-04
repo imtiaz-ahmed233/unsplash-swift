@@ -28,16 +28,18 @@ class UsersTests: BaseTestCase {
     func testFindUser() {
         let expectation = expectationWithDescription("\(__FUNCTION__)")
         
-        client.users.findUser("camdenfullmer").response({ response, error in
+        MockedURLProtocol.statusCode = 200
+        MockedURLProtocol.responseData = Utils.dataForJSONFile("users_profile")
+        
+        client.users.findUser("jimmyexample").response({ response, error in
             XCTAssertNil(error)
             if let user = response {
-                XCTAssertEqual(user.username, "camdenfullmer")
-                // FIXME: Something wrong with the API?
-//                XCTAssertNotNil(user.downloads)
-                XCTAssertEqual(user.firstName, "Camden")
-                XCTAssertEqual(user.lastName, "Fullmer")
+                XCTAssertEqual(user.username, "jimmyexample")
+                XCTAssertEqual(user.firstName, "James")
+                XCTAssertEqual(user.lastName, "Example")
                 XCTAssertNotNil(user.profilePhoto)
-                XCTAssertNotNil(user.portfolioURL)
+                XCTAssertNil(user.portfolioURL)
+                XCTAssertEqual(user.downloads!, 225974)
             }
             
             expectation.fulfill()
@@ -49,10 +51,20 @@ class UsersTests: BaseTestCase {
     func testFindUserPhotos() {
         let expectation = expectationWithDescription("\(__FUNCTION__)")
         
-        client.users.photosForUser("camdenfullmer").response({ response, error in
+        MockedURLProtocol.statusCode = 200
+        MockedURLProtocol.responseData = Utils.dataForJSONFile("users_photos")
+        
+        client.users.photosForUser("jimmyexample").response({ response, error in
             XCTAssertNil(error)
             if let result = response {
-                XCTAssertEqual(result.photos.count, 0)
+                XCTAssertEqual(result.photos.count, 1)
+                let photo = result.photos.first!
+                XCTAssertEqual(photo.id, "LBI7cgq3pbM")
+                XCTAssertEqual(photo.width, 5245)
+                XCTAssertEqual(photo.height, 3497)
+                XCTAssertNotNil(photo.color)
+                XCTAssertNotNil(photo.user)
+                XCTAssertNotNil(photo.url)
             }
             
             expectation.fulfill()
@@ -64,10 +76,20 @@ class UsersTests: BaseTestCase {
     func testFindUserLikes() {
         let expectation = expectationWithDescription("\(__FUNCTION__)")
         
-        client.users.likesForUser("camdenfullmer").response({ response, error in
+        MockedURLProtocol.statusCode = 200
+        MockedURLProtocol.responseData = Utils.dataForJSONFile("users_liked_photos")
+        
+        client.users.photosForUser("jimmyexample").response({ response, error in
             XCTAssertNil(error)
             if let result = response {
-                XCTAssertGreaterThan(result.photos.count, 0)
+                XCTAssertEqual(result.photos.count, 1)
+                let photo = result.photos.first!
+                XCTAssertEqual(photo.id, "LBI7cgq3pbM")
+                XCTAssertEqual(photo.width, 5245)
+                XCTAssertEqual(photo.height, 3497)
+                XCTAssertNotNil(photo.color)
+                XCTAssertNotNil(photo.user)
+                XCTAssertNotNil(photo.url)
             }
             
             expectation.fulfill()

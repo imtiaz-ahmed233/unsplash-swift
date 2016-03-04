@@ -1,0 +1,9 @@
+{
+  "id": 2,
+  "title": "Buildings",
+  "photo_count": 3428,
+  "links": {
+    "self": "https://api.unsplash.com/categories/2",
+    "photos": "https://api.unsplash.com/categories/2/photos"
+  }
+}

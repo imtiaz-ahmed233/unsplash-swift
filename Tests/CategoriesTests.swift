@@ -28,10 +28,16 @@ class CategoriesTests: BaseTestCase {
     func testAllCategories() {
         let expectation = expectationWithDescription("\(__FUNCTION__)")
         
+        MockedURLProtocol.statusCode = 200
+        MockedURLProtocol.responseData = Utils.dataForJSONFile("categories_all")
+        
         client.categories.all().response({ response, error in
             XCTAssertNil(error)
             if let result = response {
-                XCTAssertGreaterThan(result.categories.count, 0)
+                XCTAssertEqual(result.categories.count, 1)
+                XCTAssertEqual(result.categories.first!.id, 2)
+                XCTAssertEqual(result.categories.first!.title, "Buildings")
+                XCTAssertEqual(result.categories.first!.photoCount, 3428)
             }
             
             expectation.fulfill()
@@ -43,12 +49,15 @@ class CategoriesTests: BaseTestCase {
     func testSpecificCategory() {
         let expectation = expectationWithDescription("\(__FUNCTION__)")
         
+        MockedURLProtocol.statusCode = 200
+        MockedURLProtocol.responseData = Utils.dataForJSONFile("categories_specific")
+        
         client.categories.findCategory(2).response({ response, error in
             XCTAssertNil(error)
             if let category = response {
                 XCTAssertEqual(category.id, 2)
                 XCTAssertEqual(category.title, "Buildings")
-                XCTAssertGreaterThan(category.photoCount, 0)
+                XCTAssertEqual(category.photoCount, 3428)
             }
             
             expectation.fulfill()
@@ -60,26 +69,20 @@ class CategoriesTests: BaseTestCase {
     func testCategoryPhotos() {
         let expectation = expectationWithDescription("\(__FUNCTION__)")
         
-        client.categories.photosForCategory(2, page: nil, perPage: nil).response({ response, error in
+        MockedURLProtocol.statusCode = 200
+        MockedURLProtocol.responseData = Utils.dataForJSONFile("categories_photos")
+        
+        client.categories.photosForCategory(2).response({ response, error in
             XCTAssertNil(error)
             if let result = response {
-                XCTAssertEqual(result.photos.count, 10)
-            }
-            
-            expectation.fulfill()
-        })
-        
-        waitForExpectations()
-    }
-    
-    // FIXME: This test fails because the per page parameter has no effect. Problem with API?
-    func _testCategoryPhotosPerPage() {
-        let expectation = expectationWithDescription("\(__FUNCTION__)")
-        
-        client.categories.photosForCategory(2, page: nil, perPage: 20).response({ response, error in
-            XCTAssertNil(error)
-            if let result = response {
-                XCTAssertEqual(result.photos.count, 20)
+                XCTAssertEqual(result.photos.count, 1)
+                let photo = result.photos.first!
+                XCTAssertEqual(photo.id, "lk-cRCSRI7s")
+                XCTAssertEqual(photo.width, 5245)
+                XCTAssertEqual(photo.height, 3497)
+                XCTAssertNotNil(photo.color)
+                XCTAssertNotNil(photo.user)
+                XCTAssertNotNil(photo.url)
             }
             
             expectation.fulfill()

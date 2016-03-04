@@ -35,7 +35,7 @@ class BaseTestCase : XCTestCase {
             configuration.HTTPAdditionalHeaders = Manager.defaultHTTPHeaders
             configuration.protocolClasses = [ MockedURLProtocol.self ]
             let manager = Manager(configuration: configuration)
-            client = UnsplashClient.init(appId: Config.appId, manager: manager, host: "https://api.unsplash.com")
+            client = UnsplashClient.init(appId: "APP_ID", manager: manager, host: "https://api.unsplash.com")
             client.accessToken = Config.accessToken
         }
     }

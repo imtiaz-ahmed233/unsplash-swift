@@ -1,0 +1,22 @@
+{
+  "id": 1,
+  "published_at": "2015-06-17T11:53:00-04:00",
+  "curator": {
+    "id": "eUO1o53muso",
+    "username": "crew",
+    "name": "Crew",
+    "bio": "Work with the best designers and developers without breaking the bank.",
+    "links": {
+      "self": "https://api.unsplash.com/users/crew",
+      "html": "https://unsplash.com/crew",
+      "photos": "https://api.unsplash.com/users/crew/photos",
+      "likes": "https://api.unsplash.com/users/crew/likes"
+    }
+  },
+  "links": {
+    "self": "https://api.unsplash.com/curated_batches/1",
+    "html": "https://unsplash.com/collections/curated/1",
+    "photos": "https://api.unsplash.com/curated_batches/1/photos",
+    "download": "https://download.unsplash.com/zip-archives/1-archive.zip"
+  }
+}

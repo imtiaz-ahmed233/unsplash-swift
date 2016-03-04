@@ -28,25 +28,20 @@ class PhotoTests: BaseTestCase {
     func testPhotos() {
         let expectation = expectationWithDescription("\(__FUNCTION__)")
         
-        client.photos.findPhotos(2, perPage: nil).response({ response, error in
+        MockedURLProtocol.statusCode = 200
+        MockedURLProtocol.responseData = Utils.dataForJSONFile("photos_list")
+        
+        client.photos.findPhotos().response({ response, error in
             XCTAssertNil(error)
             if let result = response {
-                XCTAssertEqual(result.photos.count, 10)
-            }
-            
-            expectation.fulfill()
-        })
-        
-        waitForExpectations()
-    }
-    
-    func testPhotosPerPage() {
-        let expectation = expectationWithDescription("\(__FUNCTION__)")
-        
-        client.photos.findPhotos(2, perPage: 20).response({ response, error in
-            XCTAssertNil(error)
-            if let result = response {
-                XCTAssertEqual(result.photos.count, 20)
+                XCTAssertEqual(result.photos.count, 1)
+                let photo = result.photos.first!
+                XCTAssertEqual(photo.id, "cssvEZacHvQ")
+                XCTAssertEqual(photo.width, 5245)
+                XCTAssertEqual(photo.height, 3497)
+                XCTAssertNotNil(photo.color)
+                XCTAssertNotNil(photo.user)
+                XCTAssertNotNil(photo.url)
             }
             
             expectation.fulfill()
@@ -58,42 +53,20 @@ class PhotoTests: BaseTestCase {
     func testSearch() {
         let expectation = expectationWithDescription("\(__FUNCTION__)")
         
-        client.photos.search("cat").response({ response, error in
+        MockedURLProtocol.statusCode = 200
+        MockedURLProtocol.responseData = Utils.dataForJSONFile("photos_search")
+        
+        client.photos.search("search").response({ response, error in
             XCTAssertNil(error)
             if let result = response {
-                XCTAssertEqual(result.photos.count, 10)
-            }
-            
-            expectation.fulfill()
-        })
-        
-        waitForExpectations()
-    }
-    
-    func testSearchWithCategory() {
-        let expectation = expectationWithDescription("\(__FUNCTION__)")
-        
-        let categories : Array<UInt32> = [2]
-        client.photos.search("skyscraper", categoryIds: categories).response({ response, error in
-            XCTAssertNil(error)
-            if let result = response {
-                XCTAssertEqual(result.photos.count, 10)
-            }
-            
-            expectation.fulfill()
-        })
-        
-        waitForExpectations()
-    }
-    
-    func testSearchWithCategories() {
-        let expectation = expectationWithDescription("\(__FUNCTION__)")
-        
-        let categories : Array<UInt32> = [2, 4]
-        client.photos.search("skyscraper", categoryIds: categories).response({ response, error in
-            XCTAssertNil(error)
-            if let result = response {
-                XCTAssertEqual(result.photos.count, 10)
+                XCTAssertEqual(result.photos.count, 1)
+                let photo = result.photos.first!
+                XCTAssertEqual(photo.id, "cssvEZacHvQ")
+                XCTAssertEqual(photo.width, 5245)
+                XCTAssertEqual(photo.height, 3497)
+                XCTAssertNotNil(photo.color)
+                XCTAssertNotNil(photo.user)
+                XCTAssertNotNil(photo.url)
             }
             
             expectation.fulfill()
@@ -104,21 +77,24 @@ class PhotoTests: BaseTestCase {
     
     func testSpecificPhoto() {
         let expectation = expectationWithDescription("\(__FUNCTION__)")
-        client.photos.findPhoto("0NRherR9Xq8").response({ response, error in
+        
+        MockedURLProtocol.statusCode = 200
+        MockedURLProtocol.responseData = Utils.dataForJSONFile("photos_specific")
+        
+        client.photos.findPhoto("Dwu85P9SOIk").response({ response, error in
             XCTAssertNil(error)
             if let photo = response {
-                XCTAssertEqual(photo.id, "0NRherR9Xq8")
-                XCTAssertNotNil(photo.categories)
+                XCTAssertEqual(photo.id, "Dwu85P9SOIk")
+                XCTAssertEqual(photo.categories.count, 1)
                 XCTAssertNotNil(photo.exif)
-                XCTAssertEqual(photo.width, 2667)
-                XCTAssertEqual(photo.height, 4000)
+                XCTAssertEqual(photo.width, 2448)
+                XCTAssertEqual(photo.height, 3264)
                 XCTAssertNotNil(photo.user)
                 XCTAssertNotNil(photo.color)
                 XCTAssertNotNil(photo.url)
-                XCTAssertNotNil(photo.downloads)
-                XCTAssertGreaterThan(photo.downloads!, 0)
-                XCTAssertNotNil(photo.likes)
-                XCTAssertGreaterThan(photo.likes!, 0)
+                XCTAssertEqual(photo.downloads!, 1345)
+                XCTAssertEqual(photo.likes!, 24)
+                XCTAssertNotNil(photo.location)
             }
             
             expectation.fulfill()
@@ -129,14 +105,21 @@ class PhotoTests: BaseTestCase {
     
     func testRandomPhoto() {
         let expectation = expectationWithDescription("\(__FUNCTION__)")
+        
+        MockedURLProtocol.statusCode = 200
+        MockedURLProtocol.responseData = Utils.dataForJSONFile("photos_random")
+        
         client.photos.random().response({ response, error in
             XCTAssertNil(error)
             if let photo = response {
-                XCTAssertNotNil(photo.categories)
-                XCTAssertNotNil(photo.exif)
+                XCTAssertEqual(photo.id, "Dwu85P9SOIk")
+                XCTAssertNil(photo.exif)
+                XCTAssertEqual(photo.width, 2448)
+                XCTAssertEqual(photo.height, 3264)
                 XCTAssertNotNil(photo.user)
                 XCTAssertNotNil(photo.color)
                 XCTAssertNotNil(photo.url)
+                XCTAssertEqual(photo.downloads!, 1345)
             }
             
             expectation.fulfill()

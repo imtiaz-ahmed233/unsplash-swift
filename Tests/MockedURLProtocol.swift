@@ -28,7 +28,7 @@ class MockedURLProtocol : NSURLProtocol {
     static var statusCode : Int?
     
     override static func canInitWithRequest(request: NSURLRequest) -> Bool {
-        return request.URL?.scheme == "https" && request.URL?.host == "api.unsplash.com" && request.URL?.path == "/me"
+        return request.URL?.scheme == "https" && request.URL?.host == "api.unsplash.com"
     }
     
     override func startLoading() {
