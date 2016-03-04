@@ -13,7 +13,7 @@ UnsplashSwift uses [Alamofire](https://github.com/Alamofire/Alamofire) as the ba
 ## Features
 
 - [x] User Authorization
-- [ ] User Profile
+- [x] Current User
 - [x] Users
 - [x] Photos (partial support)
 - [x] Categories
@@ -82,6 +82,38 @@ Unsplash.authorizeFromController(self, completion: { success, error in
 ```
 
 __Note:__ Authorizing a user is not always required to interact with the Unsplash API. For example, you can retrieve curated batches without having a user log in.
+
+### Current User
+
+#### Retrieve Profile
+
+To retrieve the current user's profile, use ```profile()``` from the shared Unsplash client.
+
+```swift
+let client = Unsplash.client!
+client.currentUser.profile().response({ response, error in
+    if let user = response {
+        print(user.username)
+    } else {
+      // Handle error.
+    }
+})
+```
+
+#### Update Profile
+
+To update the current user's profile, use ```updateProfile(username:firstName:lastName:email:portfolioURL:location:bio:instagramUsername)``` from the shared Unsplash client.
+
+```swift
+let client = Unsplash.client!
+client.currentUser.upateProfile(firstName: "FIRST_NAME").response({ response, error in
+    if let user = response {
+        print(user.username)
+    } else {
+      // Handle error.
+    }
+})
+```
 
 ### Users
 

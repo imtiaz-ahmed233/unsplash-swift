@@ -31,8 +31,14 @@ public class User {
     public let downloads : UInt32?
     public let profilePhoto : ProfilePhotoURL?
     public let portfolioURL : NSURL?
+    public let bio : String?
+    public let uploadsRemaining : UInt32?
+    public let instagramUsername : String?
+    public let location : String?
+    public let email : String?
     
-    public init(id: String?, username: String, name: String?, firstName: String?, lastName: String?, downloads: UInt32?, profilePhoto: ProfilePhotoURL?, portfolioURL: NSURL?) {
+    public init(
+        id: String?, username: String, name: String?, firstName: String?, lastName: String?, downloads: UInt32?, profilePhoto: ProfilePhotoURL?, portfolioURL: NSURL?, bio : String?, uploadsRemaining: UInt32?, instagramUsername : String?, location : String?, email : String?) {
         self.id = id;
         self.username = username;
         self.name = name
@@ -41,6 +47,11 @@ public class User {
         self.downloads = downloads
         self.profilePhoto = profilePhoto
         self.portfolioURL = portfolioURL
+        self.bio = bio
+        self.uploadsRemaining = uploadsRemaining
+        self.instagramUsername = instagramUsername
+        self.location = location
+        self.email = email
     }
 }
 public class ProfilePhotoURL {

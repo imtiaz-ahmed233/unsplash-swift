@@ -1,0 +1,18 @@
+{
+    "username": "jimmyexample",
+    "first_name": "Jim",
+    "last_name": "Example",
+    "portfolio_url": null,
+    "downloads": 4321,
+    "bio": "He was born on a very, VERY cold day.",
+    "uploads_remaining": 4,
+    "instagram_username": "james-example",
+    "location": null,
+    "email": "jim@example.com",
+    "links": {
+        "self": "https://api.unsplash.com/users/jimmyexample",
+        "html": "https://unsplash.com/jimmyexample",
+        "photos": "https://api.unsplash.com/users/jimmyexample/photos",
+        "likes": "https://api.unsplash.com/users/jimmyexample/likes"
+    }
+}

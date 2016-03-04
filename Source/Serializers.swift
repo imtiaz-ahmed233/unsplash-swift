@@ -220,7 +220,12 @@ extension User {
                 let downloads = UInt32Serializer().deserialize(dict["downloads"])
                 let profilePhoto = ProfilePhotoURL.Serializer().deserialize(dict["profile_image"])
                 let portfolioURL = NSURLSerializer().deserialize(dict["portfolio_url"])
-                return User(id: id, username: username, name: name, firstName: firstName, lastName: lastName, downloads: downloads, profilePhoto: profilePhoto, portfolioURL: portfolioURL)
+                let bio = StringSerializer().deserialize(dict["bio"])
+                let uploadsRemaining = UInt32Serializer().deserialize(dict["uploads_remaining"])
+                let instagramUsername = StringSerializer().deserialize(dict["instagram_username"])
+                let location = StringSerializer().deserialize(dict["location"])
+                let email = StringSerializer().deserialize(dict["email"])
+                return User(id: id, username: username, name: name, firstName: firstName, lastName: lastName, downloads: downloads, profilePhoto: profilePhoto, portfolioURL: portfolioURL, bio: bio, uploadsRemaining: uploadsRemaining, instagramUsername: instagramUsername, location: location, email: email)
             default:
                 fatalError("error deserializing")
             }

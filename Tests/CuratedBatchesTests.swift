@@ -26,16 +26,6 @@ import UnsplashSwift
 
 class CuratedBatchesTests: BaseTestCase {
     
-    override func setUp() {
-        super.setUp()
-        Unsplash.setUpWithAppId(Config.appId, secret: Config.secret)
-    }
-    
-    override func tearDown() {
-        super.tearDown()
-        Unsplash.unlinkClient()
-    }
-    
     func testFindBatches() {
         let expectation = expectationWithDescription("\(__FUNCTION__)")
         

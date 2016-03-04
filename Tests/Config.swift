@@ -21,8 +21,11 @@
 // THE SOFTWARE.
 
 import Foundation
+import UnsplashSwift
 
 public class Config {
+    
+    static let accessToken = UnsplashAccessToken(appId: "APP_ID", accessToken: "ACCESS_TOKEN")
     
     public static var appId: String {
         let info = NSBundle(forClass: self).infoDictionary!

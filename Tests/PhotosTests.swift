@@ -25,16 +25,6 @@ import UnsplashSwift
 
 class PhotoTests: BaseTestCase {
     
-    override func setUp() {
-        super.setUp()
-        Unsplash.setUpWithAppId(Config.appId, secret: Config.secret)
-    }
-    
-    override func tearDown() {
-        super.tearDown()
-        Unsplash.unlinkClient()
-    }
-    
     func testPhotos() {
         let expectation = expectationWithDescription("\(__FUNCTION__)")
         

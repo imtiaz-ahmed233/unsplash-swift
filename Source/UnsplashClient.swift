@@ -33,6 +33,7 @@ public class UnsplashClient {
     public var stats : StatsRoutes!
     public var photos : PhotosRoutes!
     public var users : UsersRoutes!
+    public var currentUser : CurrentUserRoutes!
     public var accessToken : UnsplashAccessToken?
     
     public static var sharedClient : UnsplashClient!
@@ -46,6 +47,7 @@ public class UnsplashClient {
         self.stats = StatsRoutes(client: self)
         self.photos = PhotosRoutes(client: self)
         self.users = UsersRoutes(client: self)
+        self.currentUser = CurrentUserRoutes(client: self)
     }
     
     public convenience init(appId: String) {
@@ -60,7 +62,7 @@ public class UnsplashClient {
             "Content-Type" : "application/json",
         ]
         if (authNeeded) {
-            // TODO: Access token will get set here.
+            headers["Authorization"] = "Bearer \(self.accessToken!.accessToken)"
         } else {
             headers["Authorization"] = "Client-ID \(self.appId)"
         }

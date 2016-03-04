@@ -21,10 +21,16 @@
 		4141A9431C82376900F34AA6 /* Serializers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4141A9421C82376900F34AA6 /* Serializers.swift */; };
 		4141A94B1C825CAB00F34AA6 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4141A94A1C825CAB00F34AA6 /* Config.swift */; };
 		4141A9541C82851100F34AA6 /* BaseTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4141A9531C82851100F34AA6 /* BaseTestCase.swift */; };
+		A806F44C1C88D98A00535D60 /* CurrentUserRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A806F44B1C88D98A00535D60 /* CurrentUserRoutes.swift */; };
+		A806F44E1C88DA4D00535D60 /* CurrentUserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A806F44D1C88DA4D00535D60 /* CurrentUserTests.swift */; };
+		A806F4501C88E1CC00535D60 /* MockedURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A806F44F1C88E1CC00535D60 /* MockedURLProtocol.swift */; };
+		A806F4541C88E7F200535D60 /* current_user_profile.json in Resources */ = {isa = PBXBuildFile; fileRef = A806F4531C88E7F200535D60 /* current_user_profile.json */; };
+		A806F4561C88E83500535D60 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A806F4551C88E83500535D60 /* Utils.swift */; };
 		A82FCB121C80B7A7003F09D2 /* UnsplashSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A82FCB071C80B7A7003F09D2 /* UnsplashSwift.framework */; };
 		A82FCB2A1C80B9B0003F09D2 /* UnsplashSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = A82FCB291C80B9B0003F09D2 /* UnsplashSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A8341F3A1C80DC4500110208 /* UnsplashClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8341F391C80DC4500110208 /* UnsplashClient.swift */; };
 		A8341F3B1C80DC6300110208 /* UnsplashUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FCB2C1C80CC7F003F09D2 /* UnsplashUtil.swift */; };
+		A893ACE71C89E0ED00DBEBC1 /* current_user_update.json in Resources */ = {isa = PBXBuildFile; fileRef = A893ACE61C89E0ED00DBEBC1 /* current_user_update.json */; };
 		A8B201581C85FBA9001FFB76 /* UnsplashAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B201571C85FBA9001FFB76 /* UnsplashAuthManager.swift */; };
 		A8BA68BD1C84D79200DA27A6 /* UsersRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BA68BC1C84D79200DA27A6 /* UsersRoutes.swift */; };
 		A8BA68BF1C84DAAB00DA27A6 /* UsersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BA68BE1C84DAAB00DA27A6 /* UsersTests.swift */; };
@@ -58,6 +64,11 @@
 		4141A94A1C825CAB00F34AA6 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Config.swift; path = Tests/Config.swift; sourceTree = SOURCE_ROOT; };
 		4141A9531C82851100F34AA6 /* BaseTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseTestCase.swift; path = Tests/BaseTestCase.swift; sourceTree = SOURCE_ROOT; };
 		7A3B214196AD24ACC9CA13C2 /* Pods-UnsplashSwift iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnsplashSwift iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-UnsplashSwift iOS/Pods-UnsplashSwift iOS.release.xcconfig"; sourceTree = "<group>"; };
+		A806F44B1C88D98A00535D60 /* CurrentUserRoutes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CurrentUserRoutes.swift; path = Source/CurrentUserRoutes.swift; sourceTree = SOURCE_ROOT; };
+		A806F44D1C88DA4D00535D60 /* CurrentUserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CurrentUserTests.swift; path = Tests/CurrentUserTests.swift; sourceTree = SOURCE_ROOT; };
+		A806F44F1C88E1CC00535D60 /* MockedURLProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MockedURLProtocol.swift; path = Tests/MockedURLProtocol.swift; sourceTree = SOURCE_ROOT; };
+		A806F4531C88E7F200535D60 /* current_user_profile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = current_user_profile.json; path = Tests/Responses/current_user_profile.json; sourceTree = SOURCE_ROOT; };
+		A806F4551C88E83500535D60 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utils.swift; path = Tests/Utils.swift; sourceTree = SOURCE_ROOT; };
 		A82FCB071C80B7A7003F09D2 /* UnsplashSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UnsplashSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A82FCB111C80B7A7003F09D2 /* UnsplashSwift iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "UnsplashSwift iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A82FCB241C80B852003F09D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Tests/Info.plist; sourceTree = SOURCE_ROOT; };
@@ -65,6 +76,7 @@
 		A82FCB291C80B9B0003F09D2 /* UnsplashSwift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UnsplashSwift.h; path = Source/UnsplashSwift.h; sourceTree = SOURCE_ROOT; };
 		A82FCB2C1C80CC7F003F09D2 /* UnsplashUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UnsplashUtil.swift; path = Source/UnsplashUtil.swift; sourceTree = SOURCE_ROOT; };
 		A8341F391C80DC4500110208 /* UnsplashClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UnsplashClient.swift; path = Source/UnsplashClient.swift; sourceTree = SOURCE_ROOT; };
+		A893ACE61C89E0ED00DBEBC1 /* current_user_update.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = current_user_update.json; path = Tests/Responses/current_user_update.json; sourceTree = SOURCE_ROOT; };
 		A8B201571C85FBA9001FFB76 /* UnsplashAuthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UnsplashAuthManager.swift; path = Source/UnsplashAuthManager.swift; sourceTree = SOURCE_ROOT; };
 		A8BA68BC1C84D79200DA27A6 /* UsersRoutes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UsersRoutes.swift; path = Source/UsersRoutes.swift; sourceTree = SOURCE_ROOT; };
 		A8BA68BE1C84DAAB00DA27A6 /* UsersTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UsersTests.swift; path = Tests/UsersTests.swift; sourceTree = SOURCE_ROOT; };
@@ -99,6 +111,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		A806F4521C88E7E500535D60 /* Responses */ = {
+			isa = PBXGroup;
+			children = (
+				A806F4531C88E7F200535D60 /* current_user_profile.json */,
+				A893ACE61C89E0ED00DBEBC1 /* current_user_update.json */,
+			);
+			name = Responses;
+			sourceTree = "<group>";
+		};
 		A82FCAFD1C80B7A7003F09D2 = {
 			isa = PBXGroup;
 			children = (
@@ -124,6 +145,7 @@
 			children = (
 				412003001C83BD3D003D3097 /* CategoriesRoutes.swift */,
 				4141A93C1C820DF100F34AA6 /* CuratedBatchesRoutes.swift */,
+				A806F44B1C88D98A00535D60 /* CurrentUserRoutes.swift */,
 				412002FC1C83AC72003D3097 /* Extensions.swift */,
 				412002FE1C83AEC6003D3097 /* Models.swift */,
 				412003081C83DD13003D3097 /* PhotosRoutes.swift */,
@@ -145,12 +167,16 @@
 			children = (
 				4141A9531C82851100F34AA6 /* BaseTestCase.swift */,
 				412003021C83C043003D3097 /* CategoriesTests.swift */,
+				4141A94A1C825CAB00F34AA6 /* Config.swift */,
 				4141A93A1C82069F00F34AA6 /* CuratedBatchesTests.swift */,
+				A806F44D1C88DA4D00535D60 /* CurrentUserTests.swift */,
+				A806F44F1C88E1CC00535D60 /* MockedURLProtocol.swift */,
 				4120030A1C83DE7D003D3097 /* PhotosTests.swift */,
 				412003061C83D5A1003D3097 /* StatsTests.swift */,
 				A8BA68BE1C84DAAB00DA27A6 /* UsersTests.swift */,
+				A806F4551C88E83500535D60 /* Utils.swift */,
+				A806F4521C88E7E500535D60 /* Responses */,
 				A82FCB231C80B842003F09D2 /* Supporting Files */,
-				4141A94A1C825CAB00F34AA6 /* Config.swift */,
 			);
 			name = Tests;
 			path = UnsplashSwiftTests;
@@ -282,6 +308,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A806F4541C88E7F200535D60 /* current_user_profile.json in Resources */,
+				A893ACE71C89E0ED00DBEBC1 /* current_user_update.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,6 +365,7 @@
 				A8341F3B1C80DC6300110208 /* UnsplashUtil.swift in Sources */,
 				4141A93F1C82118E00F34AA6 /* UnsplashRequest.swift in Sources */,
 				412002FF1C83AEC6003D3097 /* Models.swift in Sources */,
+				A806F44C1C88D98A00535D60 /* CurrentUserRoutes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,7 +378,10 @@
 				4120030B1C83DE7D003D3097 /* PhotosTests.swift in Sources */,
 				412003071C83D5A1003D3097 /* StatsTests.swift in Sources */,
 				4141A9541C82851100F34AA6 /* BaseTestCase.swift in Sources */,
+				A806F4561C88E83500535D60 /* Utils.swift in Sources */,
 				A8BA68BF1C84DAAB00DA27A6 /* UsersTests.swift in Sources */,
+				A806F4501C88E1CC00535D60 /* MockedURLProtocol.swift in Sources */,
+				A806F44E1C88DA4D00535D60 /* CurrentUserTests.swift in Sources */,
 				4141A94B1C825CAB00F34AA6 /* Config.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

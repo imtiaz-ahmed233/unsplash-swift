@@ -1,4 +1,4 @@
-// StatsTests.swift
+// MockedURLProtocol.swift
 //
 // Copyright (c) 2016 Camden Fullmer (http://camdenfullmer.com/)
 //
@@ -20,24 +20,35 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-import XCTest
-import UnsplashSwift
+import Foundation
 
-class StatsTestCase: BaseTestCase {
+class MockedURLProtocol : NSURLProtocol {
     
-    func testTotalDownloads() {
-        let expectation = expectationWithDescription("\(__FUNCTION__)")
+    static var responseData : NSData?
+    static var statusCode : Int?
+    
+    override static func canInitWithRequest(request: NSURLRequest) -> Bool {
+        return request.URL?.scheme == "https" && request.URL?.host == "api.unsplash.com" && request.URL?.path == "/me"
+    }
+    
+    override func startLoading() {
+        let request = self.request
+        let client = self.client
         
-        client.stats.totalDownloads().response({ response, error in
-            XCTAssertNil(error)
-            if let stats = response {
-                XCTAssertGreaterThan(stats.photoDownloads, 0)
-                XCTAssertGreaterThan(stats.batchDownloads, 0)
-            }
-            
-            expectation.fulfill()
-        })
-        
-        waitForExpectations()
+        let response = NSHTTPURLResponse(
+            URL: request.URL!,
+            statusCode: MockedURLProtocol.statusCode!,
+            HTTPVersion: "HTTP/1.1",
+            headerFields: nil)
+        client?.URLProtocol(self, didReceiveResponse: response!, cacheStoragePolicy:.NotAllowed)
+        client?.URLProtocol(self, didLoadData: MockedURLProtocol.responseData!)
+        client?.URLProtocolDidFinishLoading(self)
+    }
+    
+    override func stopLoading() {
+    }
+    
+    override static func canonicalRequestForRequest(request: NSURLRequest) -> NSURLRequest {
+        return request
     }
 }

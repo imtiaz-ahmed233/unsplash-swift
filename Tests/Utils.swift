@@ -1,4 +1,4 @@
-// StatsTests.swift
+// Utils.swift
 //
 // Copyright (c) 2016 Camden Fullmer (http://camdenfullmer.com/)
 //
@@ -20,24 +20,17 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-import XCTest
-import UnsplashSwift
+import Foundation
 
-class StatsTestCase: BaseTestCase {
+class Utils {
     
-    func testTotalDownloads() {
-        let expectation = expectationWithDescription("\(__FUNCTION__)")
-        
-        client.stats.totalDownloads().response({ response, error in
-            XCTAssertNil(error)
-            if let stats = response {
-                XCTAssertGreaterThan(stats.photoDownloads, 0)
-                XCTAssertGreaterThan(stats.batchDownloads, 0)
-            }
-            
-            expectation.fulfill()
-        })
-        
-        waitForExpectations()
+    static var bundle : NSBundle {
+        return NSBundle(forClass: Utils.self)
     }
+    
+    static func dataForJSONFile(name: String) -> NSData {
+        let path = bundle.pathForResource(name, ofType: "json")
+        return NSData(contentsOfFile: path!)!
+    }
+    
 }

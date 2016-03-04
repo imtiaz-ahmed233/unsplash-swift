@@ -22,23 +22,26 @@
 
 import XCTest
 import UnsplashSwift
+import Alamofire
 
 class BaseTestCase : XCTestCase {
     
-    var client : UnsplashClient {
-        guard let c = Unsplash.client else {
-            XCTFail("there is no client available")
-            fatalError()
+    var client : UnsplashClient!
+    
+    override func setUp() {
+        super.setUp()
+        if client == nil {
+            let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
+            configuration.HTTPAdditionalHeaders = Manager.defaultHTTPHeaders
+            configuration.protocolClasses = [ MockedURLProtocol.self ]
+            let manager = Manager(configuration: configuration)
+            client = UnsplashClient.init(appId: Config.appId, manager: manager, host: "https://api.unsplash.com")
+            client.accessToken = Config.accessToken
         }
-        return c
     }
     
     func waitForExpectations() {
-        waitForExpectationsWithTimeout(10) { error in
-            if let e = error {
-                XCTFail(e.localizedDescription)
-            }
-        }
+        waitForExpectationsWithTimeout(10, handler: nil)
     }
     
 }
