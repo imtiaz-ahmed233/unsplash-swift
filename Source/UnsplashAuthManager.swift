@@ -37,9 +37,8 @@ public class UnsplashAuthManager {
         "read_photos",
         "write_photos",
         "write_likes",
-        // TODO: These are not yet available through the API ☹️
-        // "read_collections",
-        // "write_collections",
+        "read_collections",
+        "write_collections"
     ]
     
     private let appId : String
