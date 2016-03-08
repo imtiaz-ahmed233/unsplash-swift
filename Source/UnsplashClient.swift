@@ -28,7 +28,7 @@ public class UnsplashClient {
     let host : String
     let manager : Manager
     let appId : String
-    public var curatedBatches : CuratedBatchesRoutes!
+    public var collections : CollectionsRoutes!
     public var categories : CategoriesRoutes!
     public var stats : StatsRoutes!
     public var photos : PhotosRoutes!
@@ -42,7 +42,7 @@ public class UnsplashClient {
         self.appId = appId
         self.host = host
         self.manager = manager
-        self.curatedBatches = CuratedBatchesRoutes(client: self)
+        self.collections = CollectionsRoutes(client: self)
         self.categories = CategoriesRoutes(client: self)
         self.stats = StatsRoutes(client: self)
         self.photos = PhotosRoutes(client: self)

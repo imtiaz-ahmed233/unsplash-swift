@@ -17,7 +17,7 @@ UnsplashSwift uses [Alamofire](https://github.com/Alamofire/Alamofire) as the ba
 - [x] Users
 - [x] Photos (partial support)
 - [x] Categories
-- [x] Curated Batches
+- [x] Collections
 - [x] Stats
 
 ## Requirements
@@ -249,37 +249,51 @@ client.categories.findCategory(2).response({ response, error in
 
 The ```categories``` property, of the UnsplashClient, contains other methods as well (_CategoriesRoutes.swift_).
 
-### Curated Batches
+### Collections
 
-#### Retrieve Batches
+#### Retrieve Collections
 
-To retrieve curated batches, use ```findBatches(page:perPage:)``` from the shared Unsplash client.
+To retrieve collections, use ```findCollections(page:perPage:)``` from the shared Unsplash client.
 ```swift
 let client = Unsplash.client!
-client.curatedBatches.findBatches().response({ response, error in
+client.curatedBatches.findCollections().response({ response, error in
     if let result = response {
-        print(result.batches)
+        print(result.collections)
     } else {
       // Handle error.
     }
 })
 ```
 
-#### Specific Batch
+#### Specific Collection
 
-To retrieve a specific curated batch, use ```findBatch(batchId:)``` from the shared Unsplash client.
+To retrieve a specific collection, use ```findCollection(collectionId:)``` from the shared Unsplash client.
 ```swift
 let client = Unsplash.client!
-client.curatedBatches.findBatch(1).response({ response, error in
-    if let batch = response {
-        print(batch)
+client.collections.findCollection(1).response({ response, error in
+    if let collection = response {
+        print(collection)
     } else {
       // Handle error.
     }
 })
 ```
 
-The ```curatedBatches``` property, of the UnsplashClient, contains other methods as well (_CuratedBatchesRoutes.swift_).
+#### Create Collection
+
+To create a collection, use ```createCollection(title:description:isPrivate:)``` from the shared Unsplash client.
+```swift
+let client = Unsplash.client!
+client.collections.createCollection("Cats").response({ response, error in
+    if let collection = response {
+        print(collection)
+    } else {
+      // Handle error.
+    }
+})
+```
+
+The ```collections``` property, of the UnsplashClient, contains other methods as well (_CollectionsRoutes.swift_).
 
 ### Stats
 

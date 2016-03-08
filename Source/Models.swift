@@ -67,37 +67,37 @@ public class ProfilePhotoURL {
         self.custom = custom
     }
 }
-public class Curator {
-    public let id : String
-    public let username : String
-    public let name : String
-    public let bio : String
+public class CollectionsResult {
+    public let collections : Array<Collection>
     
-    public init(id: String, username: String, name: String, bio: String) {
-        self.id = id;
-        self.username = username;
-        self.name = name
-        self.bio = bio
+    public init(collections: Array<Collection>) {
+        self.collections = collections
     }
 }
-public class CuratedBatchesResult {
-    public let batches : Array<CuratedBatch>
-    
-    public init(batches: Array<CuratedBatch>) {
-        self.batches = batches
-    }
-}
-public class CuratedBatch {
+public class Collection {
     public let id : UInt32
+    public let title : String
+    public let curated : Bool
+    public let coverPhoto : Photo
     public let publishedAt : NSDate
-    public let downloads : UInt32
-    public let curator : Curator
+    public let user : User
     
-    public init(id: UInt32, publishedAt: NSDate, downloads: UInt32, curator: Curator) {
+    public init(id: UInt32, title: String, curated: Bool, coverPhoto: Photo, publishedAt: NSDate, user: User) {
         self.id = id
         self.publishedAt = publishedAt
-        self.downloads = downloads
-        self.curator = curator
+        self.user = user
+        self.title = title
+        self.curated = curated
+        self.coverPhoto = coverPhoto
+    }
+}
+public class PhotoCollectionResult {
+    public let photo : Photo
+    public let collection : Collection
+    
+    public init(photo: Photo, collection: Collection) {
+        self.photo = photo
+        self.collection = collection
     }
 }
 public class PhotosResult {
@@ -109,9 +109,9 @@ public class PhotosResult {
 }
 public class Photo {
     public let id : String
-    public let width : UInt32
-    public let height : UInt32
-    public let color : UIColor
+    public let width : UInt32?
+    public let height : UInt32?
+    public let color : UIColor?
     public let user : User
     public let url : PhotoURL
     public let categories : Array<Category>
@@ -120,7 +120,7 @@ public class Photo {
     public let likes : UInt32?
     public let location : Location?
     
-    public init(id: String, width: UInt32, height: UInt32, color: UIColor, user: User, url: PhotoURL, categories: Array<Category>, exif: Exif?, downloads: UInt32?, likes: UInt32?, location: Location?) {
+    public init(id: String, width: UInt32?, height: UInt32?, color: UIColor?, user: User, url: PhotoURL, categories: Array<Category>, exif: Exif?, downloads: UInt32?, likes: UInt32?, location: Location?) {
         self.id = id
         self.width = width;
         self.height = height;

@@ -111,6 +111,16 @@ public class UInt32Serializer : JSONSerializer {
         return nil
     }
 }
+public class BoolSerializer : JSONSerializer {
+    public func deserialize(json : JSON) -> Bool {
+        switch json {
+        case .Number(let b):
+            return b.boolValue
+        default:
+            fatalError("Type error deserializing")
+        }
+    }
+}
 public class DoubleSerializer : JSONSerializer {
     public func deserialize(json: JSON) -> Double {
         switch json {
@@ -163,6 +173,17 @@ public class UIColorSerializer : JSONSerializer {
             fatalError("Type error deserializing")
         }
     }
+    public func deserialize(json: JSON?) -> UIColor? {
+        if let j = json {
+            switch(j) {
+            case .Str(let s):
+                return UIColor.colorWithHexString(s)
+            default:
+                break
+            }
+        }
+        return nil
+    }
 }
 public class NSURLSerializer : JSONSerializer, OptionalJSONSerializer {
     public func deserialize(json: JSON) -> NSURL {
@@ -198,6 +219,18 @@ public class NSDateSerializer : JSONSerializer {
         switch json {
         case .Str(let s):
             return self.dateFormatter.dateFromString(s)!
+        default:
+            fatalError("Type error deserializing")
+        }
+    }
+}
+
+public class DeleteResultSerializer : JSONSerializer {
+    init(){}
+    public func deserialize(json: JSON) -> Bool {
+        switch json {
+        case .Null:
+            return true
         default:
             fatalError("Type error deserializing")
         }
@@ -254,58 +287,53 @@ extension ProfilePhotoURL {
         }
     }
 }
-extension CuratedBatchesResult {
+extension CollectionsResult {
     public class Serializer : JSONSerializer {
         public init() {}
-        public func deserialize(json: JSON) -> CuratedBatchesResult {
+        public func deserialize(json: JSON) -> CollectionsResult {
             switch json {
             case .Array:
-                let batches = ArraySerializer(CuratedBatch.Serializer()).deserialize(json)
-                return CuratedBatchesResult(batches: batches)
+                let collections = ArraySerializer(Collection.Serializer()).deserialize(json)
+                return CollectionsResult(collections: collections)
             default:
                 fatalError("error deserializing")
             }
         }
     }
 }
-extension CuratedBatch {
+extension Collection {
     public class Serializer : JSONSerializer {
         public init() {}
-        public func deserialize(json: JSON) -> CuratedBatch {
+        public func deserialize(json: JSON) -> Collection {
             switch json {
             case .Dictionary(let dict):
                 let id = UInt32Serializer().deserialize(dict["id"] ?? .Null)
+                let title = StringSerializer().deserialize(dict["title"] ?? .Null)
+                let curated = BoolSerializer().deserialize(dict["curated"] ?? .Null)
+                let coverPhoto = Photo.Serializer().deserialize(dict["cover_photo"] ?? .Null)
                 let publishedAt = NSDateSerializer().deserialize(dict["published_at"] ?? .Null)
-                // FIXME: On the API documentation it says that a batch is supposed to have number
-                // of downloads, but it's not provided!
-                var downloads : UInt32 = 0
-                if let d = dict["downloads"] {
-                    downloads = UInt32Serializer().deserialize(d)
-                }
-                let curator = Curator.Serializer().deserialize(dict["curator"] ?? .Null)
-                return CuratedBatch(id: id, publishedAt: publishedAt, downloads: downloads, curator: curator)
+                let user = User.Serializer().deserialize(dict["user"] ?? .Null)
+                return Collection(id: id, title: title, curated: curated, coverPhoto: coverPhoto, publishedAt: publishedAt, user: user)
             default:
                 fatalError("error deserializing")
             }
         }
     }
 }
-extension Curator {
+extension PhotoCollectionResult {
     public class Serializer : JSONSerializer {
         public init() {}
-        public func deserialize(json: JSON) -> Curator {
+        public func deserialize(json: JSON) -> PhotoCollectionResult {
             switch json {
             case .Dictionary(let dict):
-                let id = StringSerializer().deserialize(dict["id"] ?? .Null)
-                let username = StringSerializer().deserialize(dict["username"] ?? .Null)
-                let name = StringSerializer().deserialize(dict["name"] ?? .Null)
-                let bio = StringSerializer().deserialize(dict["bio"] ?? .Null)
-                return Curator(id: id, username: username, name: name, bio: bio)
+                let photo = Photo.Serializer().deserialize(dict["photo"] ?? .Null)
+                let collection = Collection.Serializer().deserialize(dict["collection"] ?? .Null)
+                return PhotoCollectionResult(photo: photo, collection: collection)
             default:
                 fatalError("error deserializing")
             }
         }
-    }    
+    }
 }
 extension Photo {
     public class Serializer : JSONSerializer {
@@ -314,9 +342,9 @@ extension Photo {
             switch json {
             case .Dictionary(let dict):
                 let id = StringSerializer().deserialize(dict["id"] ?? .Null)
-                let width = UInt32Serializer().deserialize(dict["width"] ?? .Null)
-                let height = UInt32Serializer().deserialize(dict["height"] ?? .Null)
-                let color = UIColorSerializer().deserialize(dict["color"] ?? .Null)
+                let width = UInt32Serializer().deserialize(dict["width"])
+                let height = UInt32Serializer().deserialize(dict["height"])
+                let color = UIColorSerializer().deserialize(dict["color"])
                 let user = User.Serializer().deserialize(dict["user"] ?? .Null)
                 let url = PhotoURL.Serializer().deserialize(dict["urls"] ?? .Null)
                 let categories = ArraySerializer(Category.Serializer()).deserialize(dict["categories"] ?? .Null)

@@ -41,7 +41,9 @@ class MockedURLProtocol : NSURLProtocol {
             HTTPVersion: "HTTP/1.1",
             headerFields: nil)
         client?.URLProtocol(self, didReceiveResponse: response!, cacheStoragePolicy:.NotAllowed)
-        client?.URLProtocol(self, didLoadData: MockedURLProtocol.responseData!)
+        if let data = MockedURLProtocol.responseData {
+            client?.URLProtocol(self, didLoadData: data)
+        }
         client?.URLProtocolDidFinishLoading(self)
     }
     
