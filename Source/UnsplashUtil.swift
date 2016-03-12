@@ -26,10 +26,10 @@ public class Unsplash {
     
     public static var client : UnsplashClient?
     
-    public static func setUpWithAppId(appId : String, secret : String) {
+    public static func setUpWithAppId(appId : String, secret : String, scopes: [String]=UnsplashAuthManager.publicScope) {
         precondition(UnsplashClient.sharedClient == nil, "only call `UnsplashClient.init` one time")
         
-        UnsplashAuthManager.sharedAuthManager = UnsplashAuthManager(appId: appId, secret: secret)
+        UnsplashAuthManager.sharedAuthManager = UnsplashAuthManager(appId: appId, secret: secret, scopes: scopes)
         UnsplashClient.sharedClient = UnsplashClient(appId: appId)
         Unsplash.client = UnsplashClient.sharedClient
         

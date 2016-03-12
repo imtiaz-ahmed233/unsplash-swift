@@ -25,12 +25,12 @@ import WebKit
 import Security
 import Alamofire
 
-// TODO: Support different scope access.
-
 public class UnsplashAuthManager {
     
     private static let host = "unsplash.com"
-    private static let scopes = [
+    
+    public static let publicScope = ["public"]
+    public static let allScopes = [
         "public",
         "read_user",
         "write_user",
@@ -44,13 +44,15 @@ public class UnsplashAuthManager {
     private let appId : String
     private let secret : String
     private let redirectURL : NSURL
+    private let scopes : [String]
     
     public static var sharedAuthManager : UnsplashAuthManager!
     
-    public init(appId: String, secret: String) {
+    public init(appId: String, secret: String, scopes: [String]=UnsplashAuthManager.publicScope) {
         self.appId = appId
         self.secret = secret
         self.redirectURL = NSURL(string: "unsplash-\(self.appId)://token")!
+        self.scopes = scopes
     }
     
     public func authorizeFromController(controller: UIViewController, completion:(UnsplashAccessToken?, NSError?) -> Void) {
@@ -98,7 +100,7 @@ public class UnsplashAuthManager {
             NSURLQueryItem(name: "response_type", value: "code"),
             NSURLQueryItem(name: "client_id", value: self.appId),
             NSURLQueryItem(name: "redirect_uri", value: self.redirectURL.URLString),
-            NSURLQueryItem(name: "scope", value: UnsplashAuthManager.scopes.joinWithSeparator("+")),
+            NSURLQueryItem(name: "scope", value: self.scopes.joinWithSeparator("+")),
         ]
         return components.URL!
     }
