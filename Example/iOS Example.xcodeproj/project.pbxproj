@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		22A2DB056B1DAAF3375C10E1 /* Pods_iOS_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D847B94C5457784D071516B7 /* Pods_iOS_Example.framework */; };
-		A82FCB561C80CE5E003F09D2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FCB541C80CE5E003F09D2 /* ViewController.swift */; };
+		411CE4621C94A88A0038F09E /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411CE4611C94A88A0038F09E /* PhotosViewController.swift */; };
+		411CE4641C94A9230038F09E /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411CE4631C94A9230038F09E /* ImageCell.swift */; };
 		A82FCB571C80CE5E003F09D2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82FCB551C80CE5E003F09D2 /* AppDelegate.swift */; };
 		A82FCB5B1C80CE79003F09D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A82FCB5A1C80CE69003F09D2 /* Assets.xcassets */; };
 		A82FCB5F1C80CEEB003F09D2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A82FCB5D1C80CEEB003F09D2 /* LaunchScreen.storyboard */; };
@@ -30,8 +31,9 @@
 
 /* Begin PBXFileReference section */
 		39445BF658536B6E89DFF869 /* Pods-iOS Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS Example.release.xcconfig"; path = "../Pods/Target Support Files/Pods-iOS Example/Pods-iOS Example.release.xcconfig"; sourceTree = "<group>"; };
+		411CE4611C94A88A0038F09E /* PhotosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotosViewController.swift; path = Source/PhotosViewController.swift; sourceTree = "<group>"; };
+		411CE4631C94A9230038F09E /* ImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageCell.swift; path = Source/ImageCell.swift; sourceTree = "<group>"; };
 		A82FCB371C80CDC5003F09D2 /* iOS Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A82FCB541C80CE5E003F09D2 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = Source/ViewController.swift; sourceTree = "<group>"; };
 		A82FCB551C80CE5E003F09D2 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Source/AppDelegate.swift; sourceTree = "<group>"; };
 		A82FCB581C80CE69003F09D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Resources/Info.plist; sourceTree = "<group>"; };
 		A82FCB591C80CE69003F09D2 /* Base.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Base.lproj; path = Resources/Base.lproj; sourceTree = "<group>"; };
@@ -94,8 +96,9 @@
 		A82FCB521C80CE40003F09D2 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				A82FCB541C80CE5E003F09D2 /* ViewController.swift */,
 				A82FCB551C80CE5E003F09D2 /* AppDelegate.swift */,
+				411CE4631C94A9230038F09E /* ImageCell.swift */,
+				411CE4611C94A88A0038F09E /* PhotosViewController.swift */,
 				A82FCB531C80CE44003F09D2 /* Supporting Files */,
 			);
 			name = Source;
@@ -234,8 +237,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				411CE4621C94A88A0038F09E /* PhotosViewController.swift in Sources */,
+				411CE4641C94A9230038F09E /* ImageCell.swift in Sources */,
 				A82FCB571C80CE5E003F09D2 /* AppDelegate.swift in Sources */,
-				A82FCB561C80CE5E003F09D2 /* ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

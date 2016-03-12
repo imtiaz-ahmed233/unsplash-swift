@@ -1,18 +1,22 @@
 PODS:
   - Alamofire (3.2.0)
+  - AlamofireImage (2.3.0):
+    - Alamofire (~> 3.1)
   - UnsplashSwift (1.0.0):
     - Alamofire (= 3.2.0)
 
 DEPENDENCIES:
   - Alamofire (= 3.2.0)
+  - AlamofireImage (= 2.3.0)
   - UnsplashSwift (from `.`)
 
 EXTERNAL SOURCES:
   UnsplashSwift:
-    :path: "."
+    :path: .
 
 SPEC CHECKSUMS:
   Alamofire: 4da478599fccddff361205c8929333d7fe18dceb
+  AlamofireImage: 4013fb5b99b10117bf2554a67b9bd2231d476b45
   UnsplashSwift: f8b7ea80301f1f3e5ddf1786cdc798e6ba28bde5
 
 COCOAPODS: 0.39.0

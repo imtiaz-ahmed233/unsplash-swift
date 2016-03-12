@@ -15,4 +15,6 @@ end
 target 'iOS Example' do
   xcodeproj 'Example/iOS Example.xcodeproj'
   pod 'UnsplashSwift', :path => '.'
+  pod 'Alamofire', '3.2.0'
+  pod 'AlamofireImage', '2.3.0'
 end
