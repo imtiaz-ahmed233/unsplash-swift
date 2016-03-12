@@ -33,7 +33,11 @@ UnsplashSwift uses [Alamofire](https://github.com/Alamofire/Alamofire) as the ba
 
 ## Getting Started
 
-If you don't have an application ID and secret, follow the steps from the [Unsplash API](https://unsplash.com/developers) to register a new application.
+If you don't have an application ID and secret, follow the steps from the [Unsplash API](https://unsplash.com/developers) to register a new application. When you register a new application it will ask for a callback URL. Enter one in the following format:
+
+```
+unsplash-[YOUR_APP_ID]://token
+```
 
 ## Installation
 
