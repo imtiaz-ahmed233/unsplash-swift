@@ -37,11 +37,19 @@ public protocol JSONSerializer {
     typealias ValueType
     func deserialize(_: JSON) -> ValueType
 }
-// Need an optional serializer because some of the attributes on the models are missing from the API
-// or the API returns a Null JSON value. Still want to keep these two separate protocols.
-public protocol OptionalJSONSerializer {
-    typealias ValueType
-    func deserialize(_: JSON?) -> ValueType?
+
+public extension JSONSerializer {
+    func deserialize(json: JSON?) -> ValueType? {
+        if let j = json {
+            switch j {
+            case .Null:
+                return nil
+            default:
+                return deserialize(j)
+            }
+        }
+        return nil
+    }
 }
 
 func objectToJSON(json : AnyObject) -> JSON {
@@ -142,7 +150,7 @@ public class DoubleSerializer : JSONSerializer {
         return nil
     }
 }
-public class StringSerializer : JSONSerializer, OptionalJSONSerializer {   
+public class StringSerializer : JSONSerializer {
     public func deserialize(json: JSON) -> String {
         switch (json) {
         case .Str(let s):
@@ -150,17 +158,6 @@ public class StringSerializer : JSONSerializer, OptionalJSONSerializer {
         default:
             fatalError("Type error deserializing")
         }
-    }
-    public func deserialize(json: JSON?) -> String? {
-        if let j = json {
-            switch(j) {
-            case .Str(let s):
-                return s
-            default:
-                break
-            }
-        }
-        return nil
     }
 }
 // Color comes in the following format: #000000
@@ -173,19 +170,8 @@ public class UIColorSerializer : JSONSerializer {
             fatalError("Type error deserializing")
         }
     }
-    public func deserialize(json: JSON?) -> UIColor? {
-        if let j = json {
-            switch(j) {
-            case .Str(let s):
-                return UIColor.colorWithHexString(s)
-            default:
-                break
-            }
-        }
-        return nil
-    }
 }
-public class NSURLSerializer : JSONSerializer, OptionalJSONSerializer {
+public class NSURLSerializer : JSONSerializer {
     public func deserialize(json: JSON) -> NSURL {
         switch (json) {
         case .Str(let s):
@@ -193,17 +179,6 @@ public class NSURLSerializer : JSONSerializer, OptionalJSONSerializer {
         default:
             fatalError("Type error deserializing")
         }
-    }
-    public func deserialize(json: JSON?) -> NSURL? {
-        if let j = json {
-            switch(j) {
-            case .Str(let s):
-                return NSURL(string: s)
-            default:
-                break
-            }
-        }
-        return nil
     }
 }
 // Date comes in the following format: 2015-06-17T11:53:00-04:00
@@ -263,27 +238,28 @@ extension User {
                 fatalError("error deserializing")
             }
         }
+        public func deserialize(json: JSON?) -> User? {
+            if let j = json {
+                return deserialize(j)
+            }
+            return nil
+        }
     }
 }
 extension ProfilePhotoURL {
-    public class Serializer : OptionalJSONSerializer {
+    public class Serializer : JSONSerializer {
         public init() {}
-        public func deserialize(json: JSON?) -> ProfilePhotoURL? {
-            if let j = json {
-                switch j {
-                case .Dictionary(let dict):
-                    let large = NSURLSerializer().deserialize(dict["large"] ?? .Null)
-                    let medium = NSURLSerializer().deserialize(dict["medium"] ?? .Null)
-                    let small = NSURLSerializer().deserialize(dict["small"] ?? .Null)
-                    let custom = NSURLSerializer().deserialize(dict["custom"])
-                    return ProfilePhotoURL(large: large, medium: medium, small: small, custom: custom)
-                case .Null:
-                    break
-                default:
-                    fatalError("error deserializing")
-                }
+        public func deserialize(json: JSON) -> ProfilePhotoURL {
+            switch json {
+            case .Dictionary(let dict):
+                let large = NSURLSerializer().deserialize(dict["large"] ?? .Null)
+                let medium = NSURLSerializer().deserialize(dict["medium"] ?? .Null)
+                let small = NSURLSerializer().deserialize(dict["small"] ?? .Null)
+                let custom = NSURLSerializer().deserialize(dict["custom"])
+                return ProfilePhotoURL(large: large, medium: medium, small: small, custom: custom)
+            default:
+                fatalError("error deserializing")
             }
-            return nil
         }
     }
 }
@@ -335,6 +311,21 @@ extension PhotoCollectionResult {
         }
     }
 }
+extension PhotoUserResult {
+    public class Serializer : JSONSerializer {
+        public init() {}
+        public func deserialize(json: JSON) -> PhotoUserResult {
+            switch json {
+            case .Dictionary(let dict):
+                let photo = Photo.Serializer().deserialize(dict["photo"] ?? .Null)
+                let user = User.Serializer().deserialize(dict["user"] ?? .Null)
+                return PhotoUserResult(photo: photo, user: user)
+            default:
+                fatalError("error deserializing")
+            }
+        }
+    }
+}
 extension Photo {
     public class Serializer : JSONSerializer {
         public init() {}
@@ -345,9 +336,9 @@ extension Photo {
                 let width = UInt32Serializer().deserialize(dict["width"])
                 let height = UInt32Serializer().deserialize(dict["height"])
                 let color = UIColorSerializer().deserialize(dict["color"])
-                let user = User.Serializer().deserialize(dict["user"] ?? .Null)
+                let user = User.Serializer().deserialize(dict["user"])
                 let url = PhotoURL.Serializer().deserialize(dict["urls"] ?? .Null)
-                let categories = ArraySerializer(Category.Serializer()).deserialize(dict["categories"] ?? .Null)
+                let categories = ArraySerializer(Category.Serializer()).deserialize(dict["categories"])
                 let exif = Exif.Serializer().deserialize(dict["exif"])
                 let downloads = UInt32Serializer().deserialize(dict["downloads"])
                 let likes = UInt32Serializer().deserialize(dict["likes"])
@@ -392,47 +383,37 @@ extension PhotoURL {
     }
 }
 extension Exif {
-    public class Serializer : OptionalJSONSerializer {
+    public class Serializer : JSONSerializer {
         public init() {}
-        public func deserialize(json: JSON?) -> Exif? {
-            if let j = json {
-                switch j {
-                case .Dictionary(let dict):
-                    let make = StringSerializer().deserialize(dict["make"])
-                    let model = StringSerializer().deserialize(dict["model"])
-                    let exposureTime = DoubleSerializer().deserialize(dict["exposure_time"])
-                    let aperture = DoubleSerializer().deserialize(dict["aperture"])
-                    let focalLength = UInt32Serializer().deserialize(dict["focal_length"])
-                    let iso = UInt32Serializer().deserialize(dict["iso"])
-                    return Exif(make: make, model: model, exposureTime: exposureTime, aperture: aperture, focalLength: focalLength, iso: iso)
-                case .Null:
-                    break
-                default:
-                    fatalError("error deserializing")
-                }
+        public func deserialize(json: JSON) -> Exif {
+            switch json {
+            case .Dictionary(let dict):
+                let make = StringSerializer().deserialize(dict["make"])
+                let model = StringSerializer().deserialize(dict["model"])
+                let exposureTime = DoubleSerializer().deserialize(dict["exposure_time"])
+                let aperture = DoubleSerializer().deserialize(dict["aperture"])
+                let focalLength = UInt32Serializer().deserialize(dict["focal_length"])
+                let iso = UInt32Serializer().deserialize(dict["iso"])
+                return Exif(make: make, model: model, exposureTime: exposureTime, aperture: aperture, focalLength: focalLength, iso: iso)
+            default:
+                fatalError("error deserializing")
             }
-            return nil
         }
     }
 }
 extension Location {
-    public class Serializer : OptionalJSONSerializer {
+    public class Serializer : JSONSerializer {
         public init() {}
-        public func deserialize(json: JSON?) -> Location? {
-            if let j = json {
-                switch j {
-                case .Dictionary(let dict):
-                    let position = Position.Serializer().deserialize(dict["position"] ?? .Null)
-                    let city = StringSerializer().deserialize(dict["city"] ?? .Null)
-                    let country = StringSerializer().deserialize(dict["country"] ?? .Null)
-                    return Location(city: city, country: country, position: position)
-                case .Null:
-                    break
-                default:
-                    fatalError("error deserializing")
-                }
+        public func deserialize(json: JSON) -> Location {
+            switch json {
+            case .Dictionary(let dict):
+                let position = Position.Serializer().deserialize(dict["position"] ?? .Null)
+                let city = StringSerializer().deserialize(dict["city"] ?? .Null)
+                let country = StringSerializer().deserialize(dict["country"] ?? .Null)
+                return Location(city: city, country: country, position: position)
+            default:
+                fatalError("error deserializing")
             }
-            return nil
         }
     }
 }

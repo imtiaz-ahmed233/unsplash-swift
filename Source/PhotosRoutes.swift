@@ -24,12 +24,6 @@ import Foundation
 import Alamofire
 import CoreGraphics
 
-// Following need an authorized user before implementing.
-// TODO: Upload a photo
-// TODO: Update a photo
-// TODO: Like a photo
-// TODO: Unlike a photo
-
 public class PhotosRoutes {
     
     let client : UnsplashClient
@@ -101,4 +95,72 @@ public class PhotosRoutes {
         }
         return UnsplashRequest(client: self.client, route: "/photos/random", auth: false, params: nil, responseSerializer: Photo.Serializer())
     }
+    
+    public func uploadPhoto(photo: UIImage, location: Location?=nil, exif: Exif?=nil) -> UnsplashRequest<Photo.Serializer> {
+        precondition(client.authorized, "client is not authorized to make this request")
+        
+        let data = UIImageJPEGRepresentation(photo, 0.7)
+        var params = [String : AnyObject]()
+        params["photo"] = data!.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
+        if let l = location {
+            var locationParams = [String : AnyObject]()
+            if l.city != nil { locationParams["city"] = l.city }
+            if l.country != nil { locationParams["country"] = l.country }
+            if l.name != nil { locationParams["name"] = l.name }
+            if (l.confidential != nil && l.confidential!) { locationParams["confidential"] = "true" }
+            params["location"] = locationParams
+        }
+        if let e = exif {
+            var exifParams = [String : AnyObject]()
+            if e.make != nil { exifParams["make"] = e.make }
+            if e.model != nil { exifParams["model"] = e.model }
+            if e.exposureTime != nil { exifParams["exposure_time"] = NSNumber(double: e.exposureTime!) }
+            if e.aperture != nil { exifParams["aperture_value"] = NSNumber(double: e.aperture!) }
+            if e.focalLength != nil { exifParams["focal_length"] = NSNumber(unsignedInt: e.focalLength!) }
+            if e.iso != nil { exifParams["iso_speed_ratings"] = NSNumber(unsignedInt: e.iso!) }
+            params["exif"] = exifParams
+        }
+        
+        return UnsplashRequest(client: self.client, method: .POST, route: "/photos", auth: true, params: params, responseSerializer: Photo.Serializer())
+    }
+    
+    public func updatePhoto(photoId: String, location: Location?=nil, exif: Exif?=nil) -> UnsplashRequest<Photo.Serializer> {
+        precondition(client.authorized, "client is not authorized to make this request")
+
+        var params : [String : AnyObject] = ["id" : photoId]
+        if let l = location {
+            var locationParams = [String : AnyObject]()
+            if l.city != nil { locationParams["city"] = l.city }
+            if l.country != nil { locationParams["country"] = l.country }
+            if l.name != nil { locationParams["name"] = l.name }
+            if (l.confidential != nil && l.confidential!) { locationParams["confidential"] = "true" }
+            params["location"] = locationParams
+        }
+        if let e = exif {
+            var exifParams = [String : AnyObject]()
+            if e.make != nil { exifParams["make"] = e.make }
+            if e.model != nil { exifParams["model"] = e.model }
+            if e.exposureTime != nil { exifParams["exposure_time"] = NSNumber(double: e.exposureTime!) }
+            if e.aperture != nil { exifParams["aperture_value"] = NSNumber(double: e.aperture!) }
+            if e.focalLength != nil { exifParams["focal_length"] = NSNumber(unsignedInt: e.focalLength!) }
+            if e.iso != nil { exifParams["iso_speed_ratings"] = NSNumber(unsignedInt: e.iso!) }
+            params["exif"] = exifParams
+        }
+        return UnsplashRequest(client: self.client, method: .PUT, route: "/photos/\(photoId)", auth: true, params: params, responseSerializer: Photo.Serializer())
+    }
+    
+    public func likePhoto(photoId: String) -> UnsplashRequest<PhotoUserResult.Serializer> {
+        precondition(client.authorized, "client is not authorized to make this request")
+        
+        let params = ["id" : photoId]
+        return UnsplashRequest(client: self.client, method: .POST, route: "/photos/\(photoId)/like", auth: true, params: params, responseSerializer: PhotoUserResult.Serializer())
+    }
+    
+    public func unlikePhoto(photoId: String) -> UnsplashRequest<DeleteResultSerializer> {
+        precondition(client.authorized, "client is not authorized to make this request")
+        
+        let params = ["id" : photoId]
+        return UnsplashRequest(client: self.client, method: .DELETE, route: "/photos/\(photoId)/like", auth: true, params: params, responseSerializer: DeleteResultSerializer())
+    }
+    
 }

@@ -21,6 +21,9 @@
 		4141A9431C82376900F34AA6 /* Serializers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4141A9421C82376900F34AA6 /* Serializers.swift */; };
 		4141A94B1C825CAB00F34AA6 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4141A94A1C825CAB00F34AA6 /* Config.swift */; };
 		4141A9541C82851100F34AA6 /* BaseTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4141A9531C82851100F34AA6 /* BaseTestCase.swift */; };
+		41D357581C93C28E003AE456 /* photos_like.json in Resources */ = {isa = PBXBuildFile; fileRef = 41D357551C93C28E003AE456 /* photos_like.json */; };
+		41D357591C93C28E003AE456 /* photos_update.json in Resources */ = {isa = PBXBuildFile; fileRef = 41D357561C93C28E003AE456 /* photos_update.json */; };
+		41D3575A1C93C28E003AE456 /* photos_upload.json in Resources */ = {isa = PBXBuildFile; fileRef = 41D357571C93C28E003AE456 /* photos_upload.json */; };
 		A806F44C1C88D98A00535D60 /* CurrentUserRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A806F44B1C88D98A00535D60 /* CurrentUserRoutes.swift */; };
 		A806F44E1C88DA4D00535D60 /* CurrentUserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A806F44D1C88DA4D00535D60 /* CurrentUserTests.swift */; };
 		A806F4501C88E1CC00535D60 /* MockedURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A806F44F1C88E1CC00535D60 /* MockedURLProtocol.swift */; };
@@ -81,6 +84,9 @@
 		4141A9421C82376900F34AA6 /* Serializers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Serializers.swift; path = Source/Serializers.swift; sourceTree = SOURCE_ROOT; };
 		4141A94A1C825CAB00F34AA6 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Config.swift; path = Tests/Config.swift; sourceTree = SOURCE_ROOT; };
 		4141A9531C82851100F34AA6 /* BaseTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseTestCase.swift; path = Tests/BaseTestCase.swift; sourceTree = SOURCE_ROOT; };
+		41D357551C93C28E003AE456 /* photos_like.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = photos_like.json; path = Tests/Responses/photos_like.json; sourceTree = SOURCE_ROOT; };
+		41D357561C93C28E003AE456 /* photos_update.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = photos_update.json; path = Tests/Responses/photos_update.json; sourceTree = SOURCE_ROOT; };
+		41D357571C93C28E003AE456 /* photos_upload.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = photos_upload.json; path = Tests/Responses/photos_upload.json; sourceTree = SOURCE_ROOT; };
 		7A3B214196AD24ACC9CA13C2 /* Pods-UnsplashSwift iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnsplashSwift iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-UnsplashSwift iOS/Pods-UnsplashSwift iOS.release.xcconfig"; sourceTree = "<group>"; };
 		A806F44B1C88D98A00535D60 /* CurrentUserRoutes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CurrentUserRoutes.swift; path = Source/CurrentUserRoutes.swift; sourceTree = SOURCE_ROOT; };
 		A806F44D1C88DA4D00535D60 /* CurrentUserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CurrentUserTests.swift; path = Tests/CurrentUserTests.swift; sourceTree = SOURCE_ROOT; };
@@ -162,10 +168,13 @@
 				A85C2B201C8F2E16007DADF8 /* collections_update.json */,
 				A806F4531C88E7F200535D60 /* current_user_profile.json */,
 				A893ACE61C89E0ED00DBEBC1 /* current_user_update.json */,
+				41D357551C93C28E003AE456 /* photos_like.json */,
 				A8A1172D1C89F39800CA0852 /* photos_list.json */,
 				A8A1172E1C89F39800CA0852 /* photos_random.json */,
 				A8A1172F1C89F39800CA0852 /* photos_search.json */,
 				A8A117301C89F39800CA0852 /* photos_specific.json */,
+				41D357561C93C28E003AE456 /* photos_update.json */,
+				41D357571C93C28E003AE456 /* photos_upload.json */,
 				A8A117351C89F76700CA0852 /* stats_total_downloads.json */,
 				A8A117371C89F80200CA0852 /* users_liked_photos.json */,
 				A8A117381C89F80200CA0852 /* users_photos.json */,
@@ -373,13 +382,16 @@
 				A806F4541C88E7F200535D60 /* current_user_profile.json in Resources */,
 				A8A1173A1C89F80200CA0852 /* users_liked_photos.json in Resources */,
 				A85C2B2D1C8F3066007DADF8 /* collections_specific.json in Resources */,
+				41D3575A1C93C28E003AE456 /* photos_upload.json in Resources */,
 				A8A117331C89F39800CA0852 /* photos_search.json in Resources */,
 				A8A1173C1C89F80200CA0852 /* users_profile.json in Resources */,
+				41D357591C93C28E003AE456 /* photos_update.json in Resources */,
 				A85C2B2C1C8F3066007DADF8 /* collections_photos.json in Resources */,
 				A85C2B291C8F3066007DADF8 /* collections_create.json in Resources */,
 				A85C2B281C8F3066007DADF8 /* collections_add_photo.json in Resources */,
 				A85C2B2E1C8F3066007DADF8 /* collections_update.json in Resources */,
 				A8A117251C89EE8D00CA0852 /* categories_photos.json in Resources */,
+				41D357581C93C28E003AE456 /* photos_like.json in Resources */,
 				A8A117261C89EE8D00CA0852 /* categories_specific.json in Resources */,
 				A893ACE71C89E0ED00DBEBC1 /* current_user_update.json in Resources */,
 			);

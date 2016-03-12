@@ -85,7 +85,7 @@ class PhotoTests: BaseTestCase {
             XCTAssertNil(error)
             if let photo = response {
                 XCTAssertEqual(photo.id, "Dwu85P9SOIk")
-                XCTAssertEqual(photo.categories.count, 1)
+                XCTAssertEqual(photo.categories!.count, 1)
                 XCTAssertNotNil(photo.exif)
                 XCTAssertEqual(photo.width, 2448)
                 XCTAssertEqual(photo.height, 3264)
@@ -120,6 +120,106 @@ class PhotoTests: BaseTestCase {
                 XCTAssertNotNil(photo.color)
                 XCTAssertNotNil(photo.url)
                 XCTAssertEqual(photo.downloads!, 1345)
+            }
+            
+            expectation.fulfill()
+        })
+        
+        waitForExpectations()
+    }
+    
+    func testUploadPhoto() {
+        let expectation = expectationWithDescription("\(__FUNCTION__)")
+        
+        MockedURLProtocol.statusCode = 201
+        MockedURLProtocol.responseData = Utils.dataForJSONFile("photos_upload")
+        
+        UIGraphicsBeginImageContext(CGSizeMake(1, 1))
+        let context = UIGraphicsGetCurrentContext()
+        CGContextFillRect(context, CGRectMake(0, 0, 1, 1))
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        client.photos.uploadPhoto(image).response({ response, error in
+            XCTAssertNil(error)
+            if let photo = response {
+                XCTAssertEqual(photo.id, "Dwu85P9SOIk")
+                XCTAssertNotNil(photo.exif)
+                XCTAssertEqual(photo.width, 2448)
+                XCTAssertEqual(photo.height, 3264)
+                XCTAssertNotNil(photo.user)
+                XCTAssertNotNil(photo.color)
+                XCTAssertNotNil(photo.url)
+                XCTAssertNotNil(photo.location)
+                XCTAssertNotNil(photo.categories)
+                XCTAssertEqual(photo.likes!, 24)
+                XCTAssertEqual(photo.downloads!, 1345)
+            }
+            
+            expectation.fulfill()
+        })
+        
+        waitForExpectations()
+    }
+    
+    func testUpdatePhoto() {
+        let expectation = expectationWithDescription("\(__FUNCTION__)")
+        
+        MockedURLProtocol.statusCode = 201
+        MockedURLProtocol.responseData = Utils.dataForJSONFile("photos_update")
+        
+        client.photos.updatePhoto("Dwu85P9SOIk").response({ response, error in
+            XCTAssertNil(error)
+            if let photo = response {
+                XCTAssertEqual(photo.id, "Dwu85P9SOIk")
+                XCTAssertNotNil(photo.exif)
+                XCTAssertEqual(photo.width, 2448)
+                XCTAssertEqual(photo.height, 3264)
+                XCTAssertNotNil(photo.user)
+                XCTAssertNotNil(photo.color)
+                XCTAssertNotNil(photo.url)
+                XCTAssertNotNil(photo.location)
+                XCTAssertNotNil(photo.categories)
+                XCTAssertEqual(photo.likes!, 24)
+                XCTAssertEqual(photo.downloads!, 1345)
+            }
+            
+            expectation.fulfill()
+        })
+        
+        waitForExpectations()
+    }
+    
+    func testLikePhoto() {
+        let expectation = expectationWithDescription("\(__FUNCTION__)")
+        
+        MockedURLProtocol.statusCode = 201
+        MockedURLProtocol.responseData = Utils.dataForJSONFile("photos_like")
+        
+        client.photos.likePhoto("Dwu85P9SOIk").response({ response, error in
+            XCTAssertNil(error)
+            if let result = response {
+                let user = result.user
+                XCTAssertEqual(user.id, "8VpB0GYJMZQ")
+                let photo = result.photo
+                XCTAssertEqual(photo.id, "LF8gK8-HGSg")
+            }
+            
+            expectation.fulfill()
+        })
+        
+        waitForExpectations()
+    }
+    
+    func testUnlikePhoto() {
+        let expectation = expectationWithDescription("\(__FUNCTION__)")
+        
+        MockedURLProtocol.statusCode = 204
+        
+        client.photos.unlikePhoto("Dwu85P9SOIk").response({ response, error in
+            XCTAssertNil(error)
+            if let success = response {
+                XCTAssertTrue(success)
             }
             
             expectation.fulfill()

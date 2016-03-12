@@ -12,13 +12,13 @@ UnsplashSwift uses [Alamofire](https://github.com/Alamofire/Alamofire) as the ba
 
 ## Features
 
-- [x] User Authorization
-- [x] Current User
-- [x] Users
-- [x] Photos (partial support)
-- [x] Categories
-- [x] Collections
-- [x] Stats
+- User Authorization
+- Current User
+- Users
+- Photos
+- Categories
+- Collections
+- Stats
 
 ## Requirements
 
@@ -216,6 +216,23 @@ client.photos.random().response({ response, error in
     }
 })
 ```
+
+#### Upload Photo
+
+To upload a photo, use ```uploadPhoto(photo:location:exif:)``` from the shared Unsplash client.
+```swift
+let image = UIImage(named: "cat.jpg")
+let client = Unsplash.client!
+client.photos.uploadPhoto(image).response({ response, error in
+    if let photo = response {
+        print(photo.id)
+    } else {
+      // Handle error.
+    }
+})
+```
+
+The ```photos``` property, of the UnsplashClient, contains other methods as well (_PhotosRoutes.swift_).
 
 ### Categories
 

@@ -100,6 +100,15 @@ public class PhotoCollectionResult {
         self.collection = collection
     }
 }
+public class PhotoUserResult {
+    public let photo : Photo
+    public let user : User
+
+    public init(photo: Photo, user: User) {
+        self.photo = photo
+        self.user = user
+    }
+}
 public class PhotosResult {
     public let photos : Array<Photo>
     
@@ -112,15 +121,15 @@ public class Photo {
     public let width : UInt32?
     public let height : UInt32?
     public let color : UIColor?
-    public let user : User
+    public let user : User?
     public let url : PhotoURL
-    public let categories : Array<Category>
+    public let categories : Array<Category>?
     public let exif : Exif?
     public let downloads : UInt32?
     public let likes : UInt32?
     public let location : Location?
     
-    public init(id: String, width: UInt32?, height: UInt32?, color: UIColor?, user: User, url: PhotoURL, categories: Array<Category>, exif: Exif?, downloads: UInt32?, likes: UInt32?, location: Location?) {
+    public init(id: String, width: UInt32?, height: UInt32?, color: UIColor?, user: User?, url: PhotoURL, categories: Array<Category>?, exif: Exif?, downloads: UInt32?, likes: UInt32?, location: Location?) {
         self.id = id
         self.width = width;
         self.height = height;
@@ -192,13 +201,17 @@ public class Exif {
     }
 }
 public class Location {
-    public let city: String
-    public let country: String
-    public let positon: Position
-    public init(city: String, country: String, position: Position) {
+    public let city: String?
+    public let country: String?
+    public let positon: Position?
+    public let name : String?
+    public let confidential : Bool?
+    public init(city: String?=nil, country: String?=nil, position: Position?=nil, name: String?=nil, confidential: Bool?=nil) {
         self.city = city
         self.country = country
         self.positon = position
+        self.name = name
+        self.confidential = confidential
     }
 }
 public class Position {
