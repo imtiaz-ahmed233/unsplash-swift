@@ -36,7 +36,6 @@
 		A82FCB371C80CDC5003F09D2 /* iOS Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A82FCB551C80CE5E003F09D2 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Source/AppDelegate.swift; sourceTree = "<group>"; };
 		A82FCB581C80CE69003F09D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Resources/Info.plist; sourceTree = "<group>"; };
-		A82FCB591C80CE69003F09D2 /* Base.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Base.lproj; path = Resources/Base.lproj; sourceTree = "<group>"; };
 		A82FCB5A1C80CE69003F09D2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Resources/Assets.xcassets; sourceTree = "<group>"; };
 		A82FCB5D1C80CEEB003F09D2 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Resources/Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A82FCB5E1C80CEEB003F09D2 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Resources/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -65,6 +64,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		4117525E1C97B723006486EA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A82FCB5D1C80CEEB003F09D2 /* LaunchScreen.storyboard */,
+				A82FCB5E1C80CEEB003F09D2 /* Main.storyboard */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		4B1E12AE1973205A6FD35279 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -76,8 +84,6 @@
 		A82FCB2E1C80CDC5003F09D2 = {
 			isa = PBXGroup;
 			children = (
-				A82FCB5D1C80CEEB003F09D2 /* LaunchScreen.storyboard */,
-				A82FCB5E1C80CEEB003F09D2 /* Main.storyboard */,
 				A82FCB521C80CE40003F09D2 /* Source */,
 				A82FCB381C80CDC5003F09D2 /* Products */,
 				2D4125C6DD94C5E69784F3F7 /* Pods */,
@@ -99,6 +105,7 @@
 				A82FCB551C80CE5E003F09D2 /* AppDelegate.swift */,
 				411CE4631C94A9230038F09E /* ImageCell.swift */,
 				411CE4611C94A88A0038F09E /* PhotosViewController.swift */,
+				4117525E1C97B723006486EA /* Resources */,
 				A82FCB531C80CE44003F09D2 /* Supporting Files */,
 			);
 			name = Source;
@@ -108,7 +115,6 @@
 			isa = PBXGroup;
 			children = (
 				A82FCB581C80CE69003F09D2 /* Info.plist */,
-				A82FCB591C80CE69003F09D2 /* Base.lproj */,
 				A82FCB5A1C80CE69003F09D2 /* Assets.xcassets */,
 			);
 			name = "Supporting Files";
