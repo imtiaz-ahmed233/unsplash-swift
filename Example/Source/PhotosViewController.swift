@@ -53,6 +53,8 @@ class PhotosViewController: UICollectionViewController {
         self.client!.photos.findPhotos().response({ response, error in
             if let e = error {
                 let controller = UIAlertController(title: "Unsplash Error", message: e.description, preferredStyle: .Alert)
+                let action = UIAlertAction(title: "OK", style: .Cancel, handler: nil)
+                controller.addAction(action)
                 self.presentViewController(controller, animated: true, completion: nil)
             } else {
                 self.photos = response!.photos

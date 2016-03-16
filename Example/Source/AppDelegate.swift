@@ -28,10 +28,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        Unsplash.setUpWithAppId("APP_ID", secret: "SECRET")
+        Unsplash.setUpWithAppId("APP_ID", secret: "SECRET", scopes: UnsplashAuthManager.allScopes)
         
         return true
     }
