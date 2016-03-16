@@ -27,6 +27,7 @@ public class Unsplash {
     public static var client : UnsplashClient?
     
     public static func setUpWithAppId(appId : String, secret : String, scopes: [String]=UnsplashAuthManager.publicScope) {
+        precondition(appId != "APP_ID" && secret != "SECRET", "app id and secret are not valid")
         precondition(UnsplashClient.sharedClient == nil, "only call `UnsplashClient.init` one time")
         
         UnsplashAuthManager.sharedAuthManager = UnsplashAuthManager(appId: appId, secret: secret, scopes: scopes)
